@@ -6,7 +6,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Movie(
     val name: String = "Test name",
-    val year: String = "Test year",
+    val year: String = "Test year",     //TODO или лучше было бы использовать Int?
     val ratio: Double = -10.1
 ) : Parcelable
 

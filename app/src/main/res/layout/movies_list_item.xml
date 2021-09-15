@@ -18,7 +18,7 @@
             android:id="@+id/cardPoster"
             android:layout_width="@dimen/card_width"
             android:layout_height="@dimen/image_height"
-            android:background="@color/black" />
+            android:scaleType="centerCrop" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/cardTitle"
