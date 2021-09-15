@@ -7,4 +7,5 @@
     <dimen name="image_height">300dp</dimen>
     <dimen name="card_padding">10dp</dimen>
     <dimen name="card_text_size">22sp</dimen>
+    <dimen name="category_text_size">34sp</dimen>
 </resources>
