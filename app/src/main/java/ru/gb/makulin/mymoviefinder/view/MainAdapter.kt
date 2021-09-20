@@ -9,17 +9,21 @@ import ru.gb.makulin.mymoviefinder.model.Movie
 
 class MainAdapter : RecyclerView.Adapter<MainAdapter.MainFragmentHolder>() {
 
-    var moviesData: List<Movie> = listOf()
+    private var moviesData: List<Movie> = listOf()
+
+    fun setData(data: List<Movie>) {
+        moviesData = data
+    }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): MainAdapter.MainFragmentHolder {
-        val binding = MoviesListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = MoviesListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false) //TODO будет ли здесь утечка пямяти?
         return MainFragmentHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: MainAdapter.MainFragmentHolder, position: Int) {
+    override fun onBindViewHolder(holder: MainFragmentHolder, position: Int) {
         holder.bind(moviesData[position])
     }
 
@@ -35,6 +39,7 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.MainFragmentHolder>() {
                 cardTitle.text = movie.name
                 cardYear.text = movie.year
                 cardRating.text = movie.ratio.toString()
+
             }
         }
 
