@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import ru.gb.makulin.mymoviefinder.databinding.FragmentMainBinding
 import ru.gb.makulin.mymoviefinder.model.Movie
-import ru.gb.makulin.mymoviefinder.model.getTopRatedMovies
 import ru.gb.makulin.mymoviefinder.viewmodel.AppState
 import ru.gb.makulin.mymoviefinder.viewmodel.MainViewModel
 
@@ -42,17 +41,11 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-            //FIXME ресайклер работает напрямую, но не работает через liveData!!!
-//        setAdapters()
-//        val topMovies = getTopRatedMovies()
-//        setDataToAdapter(mainAdapterForTopRated, topMovies)
-
-
         setAdapters()
         viewModel.getLiveData().observe(viewLifecycleOwner, Observer<AppState> {
             renderData(it)
-        })
-        viewModel.getDataFromRemote()
+        }) //TODO стоит ли вынести в отдельный метод или это лишнее?
+        viewModel.getDataFromRemote()  //TODO стоит ли вынести в отдельный метод или это лишнее?
     }
 
     private fun setAdapters() {
@@ -68,21 +61,21 @@ class MainFragment : Fragment() {
             is AppState.Error -> {
                 binding.loading.visibility = View.GONE
                 val throwable = appState.error
-                Snackbar.make(binding.root, "ERR $throwable", Snackbar.LENGTH_SHORT).show()
+                makeSnackbar("ERR $throwable")
             }
             AppState.Loading -> binding.loading.visibility = View.VISIBLE
             is AppState.Success -> {
                 binding.loading.visibility = View.GONE
-                val topMovies = appState.topRatedData
-                val newMovies = appState.newData
-                val upcomingMovies = appState.upcomingData
-                setDataToAdapter(mainAdapterForNew, newMovies)
-                setDataToAdapter(mainAdapterForTopRated, topMovies)
-                setDataToAdapter(mainAdapterForUpcoming, upcomingMovies)
-                Snackbar.make(binding.root, "Success", Snackbar.LENGTH_SHORT).show()
+                setDataToAdapter(mainAdapterForNew, appState.newData)
+                setDataToAdapter(mainAdapterForTopRated, appState.topRatedData)
+                setDataToAdapter(mainAdapterForUpcoming, appState.upcomingData)
+                makeSnackbar("Success")
             }
         }
     }
+
+    private fun makeSnackbar(text: String) =
+        Snackbar.make(binding.root, text, Snackbar.LENGTH_SHORT).show()
 
     private fun setDataToAdapter(adapter: MainAdapter, data: List<Movie>) = adapter.setData(data)
 

@@ -13,13 +13,18 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.MainFragmentHolder>() {
 
     fun setData(data: List<Movie>) {
         moviesData = data
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): MainAdapter.MainFragmentHolder {
-        val binding = MoviesListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false) //TODO будет ли здесь утечка пямяти?
+        val binding = MoviesListItemBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        ) //TODO будет ли здесь утечка пямяти?
         return MainFragmentHolder(binding)
     }
 
@@ -33,7 +38,7 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.MainFragmentHolder>() {
 
     inner class MainFragmentHolder(private val binding: MoviesListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(movie: Movie) { //FIXME избежать связи с моделью!!!
+        fun bind(movie: Movie) { //FIXME в будущем избежать прямой связи с моделью!!!
             binding.apply {
                 cardPoster.setImageResource(R.drawable.ic_launcher_background)
                 cardTitle.text = movie.name
