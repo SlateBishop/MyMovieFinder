@@ -26,6 +26,7 @@ class MainViewModel(
                     repositoryImpl.getNewMoviesFromRemoteSource(),
                     repositoryImpl.getUpcomingMoviesFromRemoteSource()
                 )
+//                liveDataToObserve.value = AppState.Error(RuntimeException("bla bla"))
             }
         }.start()
     }

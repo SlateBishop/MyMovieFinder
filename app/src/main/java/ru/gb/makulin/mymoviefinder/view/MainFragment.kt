@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
+import ru.gb.makulin.mymoviefinder.R
 import ru.gb.makulin.mymoviefinder.databinding.FragmentMainBinding
 import ru.gb.makulin.mymoviefinder.model.Movie
 import ru.gb.makulin.mymoviefinder.viewmodel.AppState
@@ -42,10 +43,14 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setAdapters()
+        observeOnViewModel()
+        viewModel.getDataFromRemote()
+    }
+
+    private fun observeOnViewModel() {
         viewModel.getLiveData().observe(viewLifecycleOwner, Observer<AppState> {
             renderData(it)
-        }) //TODO стоит ли вынести в отдельный метод или это лишнее?
-        viewModel.getDataFromRemote()  //TODO стоит ли вынести в отдельный метод или это лишнее?
+        })
     }
 
     private fun setAdapters() {
@@ -61,7 +66,7 @@ class MainFragment : Fragment() {
             is AppState.Error -> {
                 binding.loading.visibility = View.GONE
                 val throwable = appState.error
-                makeSnackbar("ERR $throwable")
+                makeSnackbar(getString(R.string.appStateError) + throwable.localizedMessage)
             }
             AppState.Loading -> binding.loading.visibility = View.VISIBLE
             is AppState.Success -> {
@@ -69,7 +74,7 @@ class MainFragment : Fragment() {
                 setDataToAdapter(mainAdapterForNew, appState.newData)
                 setDataToAdapter(mainAdapterForTopRated, appState.topRatedData)
                 setDataToAdapter(mainAdapterForUpcoming, appState.upcomingData)
-                makeSnackbar("Success")
+                makeSnackbar(getString(R.string.appStateSuccess))
             }
         }
     }

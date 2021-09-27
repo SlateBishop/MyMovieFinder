@@ -3,4 +3,8 @@
     <string name="category_top_rated">Top Rated</string>
     <string name="category_new">New</string>
     <string name="category_upcoming">Upcoming</string>
+    <string name="appStateSuccess">Success</string>
+    <string name="appStateError">ERROR: </string>
+    <string name="details_duration_measure">min</string>
+    <string name="details_rating_label">Rating</string>
 </resources>
