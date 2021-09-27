@@ -19,7 +19,7 @@ class MainViewModel(
     fun getDataFromRemote() {
         liveDataToObserve.value = AppState.Loading
         Thread {
-            sleep(2000)
+            sleep(500)
             Handler(Looper.getMainLooper()).post {
                 liveDataToObserve.value = AppState.Success(
                     repositoryImpl.getTopRatedMoviesFromRemoteSource(),

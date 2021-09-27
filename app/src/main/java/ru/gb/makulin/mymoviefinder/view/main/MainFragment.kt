@@ -11,10 +11,12 @@ import com.google.android.material.snackbar.Snackbar
 import ru.gb.makulin.mymoviefinder.R
 import ru.gb.makulin.mymoviefinder.databinding.FragmentMainBinding
 import ru.gb.makulin.mymoviefinder.model.Movie
+import ru.gb.makulin.mymoviefinder.view.DetailsFragment
+import ru.gb.makulin.mymoviefinder.view.OnItemClickListener
 import ru.gb.makulin.mymoviefinder.viewmodel.AppState
 import ru.gb.makulin.mymoviefinder.viewmodel.MainViewModel
 
-class MainFragment : Fragment() {
+class MainFragment : Fragment(), OnItemClickListener {
 
     private var _binding: FragmentMainBinding? = null
     private val binding: FragmentMainBinding
@@ -56,8 +58,11 @@ class MainFragment : Fragment() {
     private fun setAdapters() {
         with(binding) {
             topRatedRecyclerView.adapter = mainAdapterForTopRated
+            mainAdapterForTopRated.setOnItemClickListener(this@MainFragment)
             newRecyclerView.adapter = mainAdapterForNew
+            mainAdapterForNew.setOnItemClickListener(this@MainFragment)
             upcomingRecyclerView.adapter = mainAdapterForUpcoming
+            mainAdapterForUpcoming.setOnItemClickListener(this@MainFragment)
         }
     }
 
@@ -87,5 +92,14 @@ class MainFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    override fun onItemClick(movie: Movie) {
+        val bundle = Bundle()
+        bundle.putParcelable(DetailsFragment.BUNDLE_KEY, movie)
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, DetailsFragment.newInstance(bundle))
+            .addToBackStack("")
+            .commit()
     }
 }
