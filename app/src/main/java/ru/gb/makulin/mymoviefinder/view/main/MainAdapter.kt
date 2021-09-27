@@ -57,8 +57,9 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.MainFragmentHolder>() {
 
 
 /*
-TODO разобраться
+TODO а почему не стоит делать напрямую так, а пробрасывали на уроке каллбэки?
 При таком подходе у меня по клику DetailsFragment открывается, но потом приложение виснет...
+UPD приложение висло из-за глюка AVD, а не самого приложения.
                 root.setOnClickListener {
                     val bundle = Bundle()
                     bundle.putParcelable(DetailsFragment.BUNDLE_KEY, movie)
