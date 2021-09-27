@@ -1,14 +1,11 @@
 package ru.gb.makulin.mymoviefinder.view.main
 
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import ru.gb.makulin.mymoviefinder.R
 import ru.gb.makulin.mymoviefinder.databinding.MoviesListItemBinding
 import ru.gb.makulin.mymoviefinder.model.Movie
-import ru.gb.makulin.mymoviefinder.view.DetailsFragment
 import ru.gb.makulin.mymoviefinder.view.OnItemClickListener
 
 class MainAdapter : RecyclerView.Adapter<MainAdapter.MainFragmentHolder>() {
