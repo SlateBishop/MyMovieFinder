@@ -1,4 +1,4 @@
-package ru.gb.makulin.mymoviefinder.view
+package ru.gb.makulin.mymoviefinder.view.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -19,7 +19,7 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.MainFragmentHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): MainAdapter.MainFragmentHolder {
+    ): MainFragmentHolder {
         val binding = MoviesListItemBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
@@ -42,7 +42,7 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.MainFragmentHolder>() {
             binding.apply {
                 cardPoster.setImageResource(R.drawable.ic_launcher_background)
                 cardTitle.text = movie.name
-                cardYear.text = movie.year
+                cardYear.text = movie.releaseData
                 cardRating.text = movie.ratio.toString()
 
             }

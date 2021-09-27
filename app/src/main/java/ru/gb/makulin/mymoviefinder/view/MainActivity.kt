@@ -3,6 +3,7 @@ package ru.gb.makulin.mymoviefinder.view
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import ru.gb.makulin.mymoviefinder.R
+import ru.gb.makulin.mymoviefinder.view.main.MainFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
