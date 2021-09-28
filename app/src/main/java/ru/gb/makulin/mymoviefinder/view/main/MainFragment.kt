@@ -86,7 +86,7 @@ class MainFragment : Fragment(), OnItemClickListener {
         Snackbar.make(binding.root, text, Snackbar.LENGTH_SHORT).show()
 
     private fun View.makeSnackbar(textId: Int, snackbarLength: Int) =
-        Snackbar.make(this, getString(textId), snackbarLength)
+        Snackbar.make(this, getString(textId), snackbarLength).show()
 
     private fun setDataToAdapter(adapter: MainAdapter, data: List<Movie>) = adapter.setData(data)
 
