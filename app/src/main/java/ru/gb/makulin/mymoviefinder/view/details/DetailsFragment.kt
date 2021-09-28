@@ -1,4 +1,4 @@
-package ru.gb.makulin.mymoviefinder.view
+package ru.gb.makulin.mymoviefinder.view.details
 
 import android.os.Bundle
 import android.view.LayoutInflater
