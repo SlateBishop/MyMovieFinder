@@ -5,14 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import ru.gb.makulin.mymoviefinder.R
 import ru.gb.makulin.mymoviefinder.databinding.FragmentMainBinding
 import ru.gb.makulin.mymoviefinder.model.Movie
-import ru.gb.makulin.mymoviefinder.view.details.DetailsFragment
 import ru.gb.makulin.mymoviefinder.view.OnItemClickListener
+import ru.gb.makulin.mymoviefinder.view.details.DetailsFragment
 import ru.gb.makulin.mymoviefinder.viewmodel.AppState
 import ru.gb.makulin.mymoviefinder.viewmodel.MainViewModel
 
@@ -49,7 +48,7 @@ class MainFragment : Fragment(), OnItemClickListener {
     }
 
     private fun observeOnViewModel() {
-        viewModel.getLiveData().observe(viewLifecycleOwner, Observer<AppState> {
+        viewModel.getLiveData().observe(viewLifecycleOwner, {
             renderData(it)
         })
     }
@@ -74,17 +73,20 @@ class MainFragment : Fragment(), OnItemClickListener {
             }
             AppState.Loading -> binding.loading.visibility = View.VISIBLE
             is AppState.Success -> {
-                binding.loading.visibility = View.GONE
                 setDataToAdapter(mainAdapterForNew, appState.newData)
                 setDataToAdapter(mainAdapterForTopRated, appState.topRatedData)
                 setDataToAdapter(mainAdapterForUpcoming, appState.upcomingData)
-                makeSnackbar(getString(R.string.appStateSuccess))
+                binding.loading.visibility = View.GONE
+                binding.root.makeSnackbar(R.string.appStateSuccess, Snackbar.LENGTH_SHORT)
             }
         }
     }
 
     private fun makeSnackbar(text: String) =
         Snackbar.make(binding.root, text, Snackbar.LENGTH_SHORT).show()
+
+    private fun View.makeSnackbar(textId: Int, snackbarLength: Int) =
+        Snackbar.make(this, getString(textId), snackbarLength)
 
     private fun setDataToAdapter(adapter: MainAdapter, data: List<Movie>) = adapter.setData(data)
 

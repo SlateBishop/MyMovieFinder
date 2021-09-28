@@ -41,19 +41,26 @@ class DetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val movie = arguments?.getParcelable(BUNDLE_KEY) ?: Movie()
-        setData(movie)
+        arguments?.let {
+            val movie = it.getParcelable(BUNDLE_KEY) ?: Movie()
+            setData(movie)
+        }
+
     }
 
     private fun setData(movie: Movie) {
         binding.apply {
-            filmDetailName.text = movie.name
-            filmDetailGenres.text = movie.genres.toString()
-            filmDetailDuration.text = movie.duration.toString()
-            filmDetailRating.text = movie.ratio.toString()
-            filmDetailDescription.text = movie.description
-            filmDetailReleaseDate.text = movie.releaseData
-            filmDetailImage.setImageResource(R.drawable.ic_launcher_background)  //FIXME later
+            with(movie) {
+                filmDetailName.text = name
+                filmDetailGenres.text = genres.toString()
+                filmDetailDuration.text = duration.toString()
+                filmDetailRating.text = ratio.toString()
+                filmDetailDescription.text = description
+                filmDetailReleaseDate.text = releaseData
+                filmDetailImage.setImageResource(R.drawable.ic_launcher_background)  //FIXME later
+            }
+
+
         }
     }
 

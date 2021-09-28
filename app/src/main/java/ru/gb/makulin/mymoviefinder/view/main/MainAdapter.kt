@@ -47,7 +47,7 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.MainFragmentHolder>() {
 
         fun bind(movie: Movie) { //FIXME в будущем избежать прямой связи с моделью!!!
             binding.apply {
-                cardPoster.setImageResource(R.drawable.ic_launcher_background)
+                cardPoster.setImageResource(R.drawable.ic_launcher_background) //FIXME later
                 cardTitle.text = movie.name
                 cardYear.text = movie.releaseData
                 cardRating.text = movie.ratio.toString()
