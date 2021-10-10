@@ -7,9 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import ru.gb.makulin.mymoviefinder.R
 import ru.gb.makulin.mymoviefinder.databinding.FragmentDetailsBinding
+import ru.gb.makulin.mymoviefinder.facade.MovieDTO
+import ru.gb.makulin.mymoviefinder.facade.MovieLoader
+import ru.gb.makulin.mymoviefinder.facade.MovieLoaderListener
 import ru.gb.makulin.mymoviefinder.model.Movie
 
-class DetailsFragment : Fragment() {
+class DetailsFragment : Fragment(), MovieLoaderListener {
 
     companion object {
         fun newInstance(bundle: Bundle): DetailsFragment {
@@ -41,27 +44,34 @@ class DetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        arguments?.let {
-            val movie = it.getParcelable(BUNDLE_KEY) ?: Movie()
-            setData(movie)
-        }
-
+//        arguments?.let {
+//            val movie = it.getParcelable(BUNDLE_KEY) ?: Movie()
+//        }
+        MovieLoader(this).loadMovie() //FIXME
     }
 
-    private fun setData(movie: Movie) {
+    private fun setData(movieDTO: MovieDTO) {
         binding.apply {
-            with(movie) {
-                filmDetailName.text = name
+            with(movieDTO) {
+                filmDetailName.text = title
                 filmDetailGenres.text = genres.toString()
-                filmDetailDuration.text = duration.toString()
-                filmDetailRating.text = ratio.toString()
-                filmDetailDescription.text = description
-                filmDetailReleaseDate.text = releaseData
+                filmDetailDuration.text = runtime.toString()
+                filmDetailRating.text = vote_average.toString()
+                filmDetailDescription.text = overview
+                filmDetailReleaseDate.text = release_date
                 filmDetailImage.setImageResource(R.drawable.ic_launcher_background)  //FIXME later
             }
 
 
         }
+    }
+
+    override fun onLoaded(movieDTO: MovieDTO) {
+        setData(movieDTO)
+    }
+
+    override fun onFailed(throwable: Throwable) {
+        TODO("Not yet implemented")
     }
 
 }

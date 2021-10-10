@@ -12,6 +12,6 @@ val poster_path: String,
 val release_date: String,
 val runtime: Long,
 val tagline: String,
-val voteAverage: Double,
-val voteCount: Long
+val vote_average: Double,
+val vote_count: Long
 )
