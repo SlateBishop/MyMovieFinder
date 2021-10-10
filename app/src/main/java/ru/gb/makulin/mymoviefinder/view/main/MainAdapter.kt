@@ -5,18 +5,19 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ru.gb.makulin.mymoviefinder.R
 import ru.gb.makulin.mymoviefinder.databinding.MoviesListItemBinding
+import ru.gb.makulin.mymoviefinder.facade.MoviesListResultDTO
 import ru.gb.makulin.mymoviefinder.model.Movie
 
 class MainAdapter : RecyclerView.Adapter<MainAdapter.MainFragmentHolder>() {
 
-    private var moviesData: List<Movie> = listOf()
+    private var moviesData: List<MoviesListResultDTO> = listOf()
     private lateinit var listener: OnItemClickListener
 
     fun setOnItemClickListener(listener: OnItemClickListener) {
         this.listener = listener
     }
 
-    fun setData(data: List<Movie>) {
+    fun setData(data: List<MoviesListResultDTO>) {
         moviesData = data
         notifyDataSetChanged()
     }
@@ -29,7 +30,7 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.MainFragmentHolder>() {
             LayoutInflater.from(parent.context),
             parent,
             false
-        ) //TODO будет ли здесь утечка пямяти?
+        )
         return MainFragmentHolder(binding)
     }
 
@@ -44,12 +45,12 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.MainFragmentHolder>() {
     inner class MainFragmentHolder(private val binding: MoviesListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(movie: Movie) { //FIXME в будущем избежать прямой связи с моделью!!!
+        fun bind(movie: MoviesListResultDTO) { //FIXME в будущем избежать прямой связи с моделью!!!
             binding.apply {
                 cardPoster.setImageResource(R.drawable.ic_launcher_background) //FIXME later
-                cardTitle.text = movie.name
-                cardYear.text = movie.releaseData
-                cardRating.text = movie.ratio.toString()
+                cardTitle.text = movie.title
+                cardYear.text = movie.release_date
+                cardRating.text = movie.vote_average.toString()
                 root.setOnClickListener {
                     listener.onItemClick(movie)
                 }

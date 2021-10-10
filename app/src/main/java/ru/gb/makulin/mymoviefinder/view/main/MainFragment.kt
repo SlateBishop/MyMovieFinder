@@ -9,6 +9,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import ru.gb.makulin.mymoviefinder.R
 import ru.gb.makulin.mymoviefinder.databinding.FragmentMainBinding
+import ru.gb.makulin.mymoviefinder.facade.MoviesListDTO
+import ru.gb.makulin.mymoviefinder.facade.MoviesListLoaderListener
+import ru.gb.makulin.mymoviefinder.facade.MoviesListResultDTO
 import ru.gb.makulin.mymoviefinder.model.Movie
 import ru.gb.makulin.mymoviefinder.view.details.DetailsFragment
 import ru.gb.makulin.mymoviefinder.viewmodel.AppState
@@ -72,9 +75,9 @@ class MainFragment : Fragment(), OnItemClickListener {
             }
             AppState.Loading -> binding.loading.visibility = View.VISIBLE
             is AppState.Success -> {
-                setDataToAdapter(mainAdapterForNew, appState.newData)
-                setDataToAdapter(mainAdapterForTopRated, appState.topRatedData)
-                setDataToAdapter(mainAdapterForUpcoming, appState.upcomingData)
+                setDataToAdapter(mainAdapterForNew, appState.newData.results)
+                setDataToAdapter(mainAdapterForTopRated, appState.topRatedData.results)
+                setDataToAdapter(mainAdapterForUpcoming, appState.upcomingData.results)
                 binding.loading.visibility = View.GONE
                 binding.root.makeSnackbar(R.string.appStateSuccess, Snackbar.LENGTH_SHORT)
             }
@@ -87,14 +90,14 @@ class MainFragment : Fragment(), OnItemClickListener {
     private fun View.makeSnackbar(textId: Int, snackbarLength: Int) =
         Snackbar.make(this, getString(textId), snackbarLength).show()
 
-    private fun setDataToAdapter(adapter: MainAdapter, data: List<Movie>) = adapter.setData(data)
+    private fun setDataToAdapter(adapter: MainAdapter, data: List<MoviesListResultDTO>) = adapter.setData(data)
 
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
     }
 
-    override fun onItemClick(movie: Movie) {
+    override fun onItemClick(movie: MoviesListResultDTO) {
         val bundle = Bundle()
         bundle.putParcelable(DetailsFragment.BUNDLE_KEY, movie)
         requireActivity().supportFragmentManager.beginTransaction()

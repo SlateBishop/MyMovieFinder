@@ -11,7 +11,7 @@ import javax.net.ssl.HttpsURLConnection
 
 class MovieLoader(private val listener: MovieLoaderListener) {
 
-    fun loadMovie(id: Long = 680, language: String = "ru-RU") {
+    fun loadMovie(id: Int = 680, language: String = "ru-RU") {
         val url =
             URL("https://api.themoviedb.org/3/movie/${id}?api_key=${BuildConfig.MOVIE_API_KEY}&language=${language}")
 

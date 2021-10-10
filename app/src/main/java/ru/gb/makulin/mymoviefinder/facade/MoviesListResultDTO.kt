@@ -1,10 +1,14 @@
 package ru.gb.makulin.mymoviefinder.facade
 
-data class TopRatedResultDTO(
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class MoviesListResultDTO(
     val adult: Boolean,
-    val id: Long,
+    val id: Int,
     val poster_path: String,
     val release_date: String,
     val title: String,
     val vote_average: Double
-)
+) : Parcelable

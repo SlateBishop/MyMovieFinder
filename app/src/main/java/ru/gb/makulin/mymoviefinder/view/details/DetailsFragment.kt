@@ -47,7 +47,7 @@ class DetailsFragment : Fragment(), MovieLoaderListener {
 //        arguments?.let {
 //            val movie = it.getParcelable(BUNDLE_KEY) ?: Movie()
 //        }
-        MovieLoader(this).loadMovie() //FIXME
+        MovieLoader(this).loadMovie() //FIXME передавать реальный ID
     }
 
     private fun setData(movieDTO: MovieDTO) {
