@@ -1,4 +1,4 @@
-package ru.gb.makulin.mymoviefinder.view
+package ru.gb.makulin.mymoviefinder.view.main
 
 import ru.gb.makulin.mymoviefinder.model.Movie
 

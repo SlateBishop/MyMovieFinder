@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.gb.makulin.mymoviefinder.R
 import ru.gb.makulin.mymoviefinder.databinding.MoviesListItemBinding
 import ru.gb.makulin.mymoviefinder.model.Movie
-import ru.gb.makulin.mymoviefinder.view.OnItemClickListener
 
 class MainAdapter : RecyclerView.Adapter<MainAdapter.MainFragmentHolder>() {
 

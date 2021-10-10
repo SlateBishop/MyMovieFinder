@@ -10,7 +10,6 @@ import com.google.android.material.snackbar.Snackbar
 import ru.gb.makulin.mymoviefinder.R
 import ru.gb.makulin.mymoviefinder.databinding.FragmentMainBinding
 import ru.gb.makulin.mymoviefinder.model.Movie
-import ru.gb.makulin.mymoviefinder.view.OnItemClickListener
 import ru.gb.makulin.mymoviefinder.view.details.DetailsFragment
 import ru.gb.makulin.mymoviefinder.viewmodel.AppState
 import ru.gb.makulin.mymoviefinder.viewmodel.MainViewModel
