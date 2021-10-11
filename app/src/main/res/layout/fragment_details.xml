@@ -1,96 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="@dimen/details_container_padding">
+    android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/filmDetailName"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/film_detail_name_size"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Film name" />
+        android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/filmDetailImage"
-        android:layout_width="@dimen/film_detail_image_width"
-        android:layout_height="@dimen/film_detail_image_height"
-        android:scaleType="fitStart"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/filmDetailName"
-        tools:src="@drawable/ic_launcher_background" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/details_container_padding">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/filmDetailGenres"
-        style="@style/FilmDetailTextStyle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/filmDetailImage"
-        app:layout_constraintTop_toBottomOf="@+id/filmDetailName"
-        tools:text="bla bla 1, bla bla 2, bla bla 3, bla bla 4, bla bla 5" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/filmDetailName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/film_detail_name_size"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Film name" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/filmDetailDuration"
-        style="@style/FilmDetailTextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@+id/filmDetailImage"
-        app:layout_constraintTop_toBottomOf="@+id/filmDetailGenres"
-        tools:text="160" />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/filmDetailImage"
+                android:layout_width="@dimen/film_detail_image_width"
+                android:layout_height="@dimen/film_detail_image_height"
+                android:scaleType="fitStart"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/filmDetailName"
+                tools:src="@drawable/ic_launcher_background" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/filmDetailDurationMeasure"
-        style="@style/FilmDetailTextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/details_margin"
-        android:text="@string/details_duration_measure"
-        app:layout_constraintStart_toEndOf="@+id/filmDetailDuration"
-        app:layout_constraintTop_toBottomOf="@+id/filmDetailGenres" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/filmDetailGenres"
+                style="@style/FilmDetailTextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/filmDetailImage"
+                app:layout_constraintTop_toBottomOf="@+id/filmDetailName"
+                tools:text="bla bla 1, bla bla 2, bla bla 3, bla bla 4, bla bla 5" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/filmDetailRatingLabel"
-        style="@style/FilmDetailTextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/details_rating_label"
-        app:layout_constraintStart_toEndOf="@+id/filmDetailImage"
-        app:layout_constraintTop_toBottomOf="@+id/filmDetailDuration" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/filmDetailDuration"
+                style="@style/FilmDetailTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@+id/filmDetailImage"
+                app:layout_constraintTop_toBottomOf="@+id/filmDetailGenres"
+                tools:text="160" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/filmDetailRating"
-        style="@style/FilmDetailTextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/details_margin"
-        app:layout_constraintStart_toEndOf="@+id/filmDetailRatingLabel"
-        app:layout_constraintTop_toBottomOf="@+id/filmDetailDuration"
-        tools:text="8.7" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/filmDetailDurationMeasure"
+                style="@style/FilmDetailTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/details_margin"
+                android:text="@string/details_duration_measure"
+                app:layout_constraintStart_toEndOf="@+id/filmDetailDuration"
+                app:layout_constraintTop_toBottomOf="@+id/filmDetailGenres" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/filmDetailReleaseDate"
-        style="@style/FilmDetailTextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@+id/filmDetailImage"
-        app:layout_constraintTop_toBottomOf="@+id/filmDetailRatingLabel"
-        tools:text="12/28/2001" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/filmDetailRatingLabel"
+                style="@style/FilmDetailTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/details_rating_label"
+                app:layout_constraintStart_toEndOf="@+id/filmDetailImage"
+                app:layout_constraintTop_toBottomOf="@+id/filmDetailDuration" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/filmDetailDescription"
-        android:textSize="@dimen/film_detail_text_size"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/filmDetailImage"
-        tools:text="very long and pretty description very long and pretty description very long and pretty description very long and pretty description very long and pretty description very long and pretty description " />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/filmDetailRating"
+                style="@style/FilmDetailTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/details_margin"
+                app:layout_constraintStart_toEndOf="@+id/filmDetailRatingLabel"
+                app:layout_constraintTop_toBottomOf="@+id/filmDetailDuration"
+                tools:text="8.7" />
 
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/filmDetailReleaseDate"
+                style="@style/FilmDetailTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@+id/filmDetailImage"
+                app:layout_constraintTop_toBottomOf="@+id/filmDetailRatingLabel"
+                tools:text="12/28/2001" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/filmDetailDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/film_detail_text_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/filmDetailImage"
+                tools:text="very long and pretty description very long and pretty description very long and pretty description very long and pretty description very long and pretty description very long and pretty description " />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</FrameLayout>

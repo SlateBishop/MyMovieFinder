@@ -48,7 +48,6 @@ class DetailsFragment : Fragment(), MovieLoaderListener {
             val movie = it.getParcelable<MoviesListResultDTO>(BUNDLE_KEY)
             MovieLoader(this).loadMovie(movie!!.id)
         }
-
     }
 
     private fun setData(movieDTO: MovieDTO) {
@@ -62,8 +61,6 @@ class DetailsFragment : Fragment(), MovieLoaderListener {
                 filmDetailReleaseDate.text = release_date
                 filmDetailImage.setImageResource(R.drawable.ic_launcher_background)  //FIXME later
             }
-
-
         }
     }
 

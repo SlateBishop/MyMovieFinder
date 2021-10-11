@@ -8,7 +8,7 @@ sealed class AppState {
         val topRatedData: MoviesListDTO,
         val newData: MoviesListDTO,
         val upcomingData: MoviesListDTO
-    ) : AppState()  //FIXME разделить модель и вьюмодел
+    ) : AppState()
 
     data class Error(val error: Throwable) : AppState()
 }
