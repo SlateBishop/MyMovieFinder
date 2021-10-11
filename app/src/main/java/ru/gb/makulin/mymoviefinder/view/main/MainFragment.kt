@@ -9,10 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import ru.gb.makulin.mymoviefinder.R
 import ru.gb.makulin.mymoviefinder.databinding.FragmentMainBinding
-import ru.gb.makulin.mymoviefinder.facade.MoviesListDTO
-import ru.gb.makulin.mymoviefinder.facade.MoviesListLoaderListener
 import ru.gb.makulin.mymoviefinder.facade.MoviesListResultDTO
-import ru.gb.makulin.mymoviefinder.model.Movie
 import ru.gb.makulin.mymoviefinder.view.details.DetailsFragment
 import ru.gb.makulin.mymoviefinder.viewmodel.AppState
 import ru.gb.makulin.mymoviefinder.viewmodel.MainViewModel
@@ -91,7 +88,8 @@ class MainFragment : Fragment(), OnItemClickListener {
     private fun View.makeSnackbar(textId: Int, snackbarLength: Int) =
         Snackbar.make(this, getString(textId), snackbarLength).show()
 
-    private fun setDataToAdapter(adapter: MainAdapter, data: List<MoviesListResultDTO>) = adapter.setData(data)
+    private fun setDataToAdapter(adapter: MainAdapter, data: List<MoviesListResultDTO>) =
+        adapter.setData(data)
 
     override fun onDestroy() {
         super.onDestroy()

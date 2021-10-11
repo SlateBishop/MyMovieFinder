@@ -1,7 +1,5 @@
 package ru.gb.makulin.mymoviefinder.viewmodel
 
-import android.os.Handler
-import android.os.Looper
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,7 +7,6 @@ import ru.gb.makulin.mymoviefinder.facade.MoviesListDTO
 import ru.gb.makulin.mymoviefinder.facade.MoviesListLoader
 import ru.gb.makulin.mymoviefinder.facade.MoviesListLoaderListener
 import ru.gb.makulin.mymoviefinder.facade.RepositoryImpl
-import java.lang.Thread.sleep
 
 
 class MainViewModel(

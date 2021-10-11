@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.gb.makulin.mymoviefinder.R
 import ru.gb.makulin.mymoviefinder.databinding.MoviesListItemBinding
 import ru.gb.makulin.mymoviefinder.facade.MoviesListResultDTO
-import ru.gb.makulin.mymoviefinder.model.Movie
 
 class MainAdapter : RecyclerView.Adapter<MainAdapter.MainFragmentHolder>() {
 
@@ -45,7 +44,7 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.MainFragmentHolder>() {
     inner class MainFragmentHolder(private val binding: MoviesListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(movie: MoviesListResultDTO) { //FIXME в будущем избежать прямой связи с моделью!!!
+        fun bind(movie: MoviesListResultDTO) {
             binding.apply {
                 cardPoster.setImageResource(R.drawable.ic_launcher_background) //FIXME later
                 cardTitle.text = movie.title

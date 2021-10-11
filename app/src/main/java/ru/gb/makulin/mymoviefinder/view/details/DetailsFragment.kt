@@ -10,7 +10,7 @@ import ru.gb.makulin.mymoviefinder.databinding.FragmentDetailsBinding
 import ru.gb.makulin.mymoviefinder.facade.MovieDTO
 import ru.gb.makulin.mymoviefinder.facade.MovieLoader
 import ru.gb.makulin.mymoviefinder.facade.MovieLoaderListener
-import ru.gb.makulin.mymoviefinder.model.Movie
+import ru.gb.makulin.mymoviefinder.facade.MoviesListResultDTO
 
 class DetailsFragment : Fragment(), MovieLoaderListener {
 
@@ -44,10 +44,11 @@ class DetailsFragment : Fragment(), MovieLoaderListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        arguments?.let {
-//            val movie = it.getParcelable(BUNDLE_KEY) ?: Movie()
-//        }
-        MovieLoader(this).loadMovie() //FIXME передавать реальный ID
+        arguments?.let {
+            val movie = it.getParcelable<MoviesListResultDTO>(BUNDLE_KEY)
+            MovieLoader(this).loadMovie(movie!!.id)
+        }
+
     }
 
     private fun setData(movieDTO: MovieDTO) {
