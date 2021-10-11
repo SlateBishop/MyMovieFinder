@@ -75,8 +75,9 @@ class MainFragment : Fragment(), OnItemClickListener {
             }
             AppState.Loading -> binding.loading.visibility = View.VISIBLE
             is AppState.Success -> {
-                setDataToAdapter(mainAdapterForNew, appState.newData.results)
+
                 setDataToAdapter(mainAdapterForTopRated, appState.topRatedData.results)
+                setDataToAdapter(mainAdapterForNew, appState.newData.results)
                 setDataToAdapter(mainAdapterForUpcoming, appState.upcomingData.results)
                 binding.loading.visibility = View.GONE
                 binding.root.makeSnackbar(R.string.appStateSuccess, Snackbar.LENGTH_SHORT)

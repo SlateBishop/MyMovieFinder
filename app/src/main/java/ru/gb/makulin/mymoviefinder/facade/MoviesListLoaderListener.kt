@@ -1,6 +1,6 @@
 package ru.gb.makulin.mymoviefinder.facade
 
 interface MoviesListLoaderListener {
-    fun onLoaded(moviesDTO: MoviesListDTO, listType: String)
+    fun onLoaded(moviesDTO: List<MoviesListDTO>)
     fun onFailed(throwable: Throwable)
 }
