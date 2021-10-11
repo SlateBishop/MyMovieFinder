@@ -72,7 +72,11 @@ class DetailsFragment : Fragment(), MovieLoaderListener {
 
     override fun onFailed(throwable: Throwable) {
         Log.e("mylogs", throwable.localizedMessage, throwable)
-        Snackbar.make(binding.root, getString(R.string.onFailedDataLoadingText), Snackbar.LENGTH_SHORT).show()
+        Snackbar.make(
+            binding.root,
+            getString(R.string.onFailedDataLoadingText),
+            Snackbar.LENGTH_SHORT
+        ).show()
     }
 
 }
