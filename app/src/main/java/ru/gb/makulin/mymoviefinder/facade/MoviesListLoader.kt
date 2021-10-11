@@ -33,12 +33,20 @@ class MoviesListLoader(private val listener: MoviesListLoaderListener) {
     }
 
     private fun loadList(url: URL) {
-        val urlConnection = url.openConnection() as HttpsURLConnection
-        urlConnection.requestMethod = "GET"
-        urlConnection.readTimeout = 10000
-        val reader = BufferedReader(InputStreamReader(urlConnection.inputStream))
-        val moviesDTO = Gson().fromJson(reader, MoviesListDTO::class.java)
-        moviesList.add(moviesDTO)
-        urlConnection.disconnect()
+        val urlConnection by lazy {
+            url.openConnection() as HttpsURLConnection
+        }
+        try {
+            urlConnection.requestMethod = "GET"
+            urlConnection.readTimeout = 10000
+            val reader = BufferedReader(InputStreamReader(urlConnection.inputStream))
+            val moviesDTO = Gson().fromJson(reader, MoviesListDTO::class.java)
+            moviesList.add(moviesDTO)
+        } catch (e: RuntimeException) {
+            val handler = Handler(Looper.getMainLooper())
+            handler.post { listener.onFailed(e) }
+        } finally {
+            urlConnection.disconnect()
+        }
     }
 }

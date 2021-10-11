@@ -7,4 +7,5 @@
     <string name="appStateError">ERROR: </string>
     <string name="details_duration_measure">min</string>
     <string name="details_rating_label">Rating</string>
+    <string name="onFailedDataLoadingText">Ошибка загрузки данных</string>
 </resources>

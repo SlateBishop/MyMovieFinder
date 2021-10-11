@@ -1,10 +1,12 @@
 package ru.gb.makulin.mymoviefinder.view.details
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.google.android.material.snackbar.Snackbar
 import ru.gb.makulin.mymoviefinder.R
 import ru.gb.makulin.mymoviefinder.databinding.FragmentDetailsBinding
 import ru.gb.makulin.mymoviefinder.facade.MovieDTO
@@ -69,7 +71,8 @@ class DetailsFragment : Fragment(), MovieLoaderListener {
     }
 
     override fun onFailed(throwable: Throwable) {
-        TODO("Not yet implemented")
+        Log.e("mylogs", throwable.localizedMessage, throwable)
+        Snackbar.make(binding.root, getString(R.string.onFailedDataLoadingText), Snackbar.LENGTH_SHORT).show()
     }
 
 }

@@ -67,26 +67,20 @@ class MainFragment : Fragment(), OnItemClickListener {
         when (appState) {
             is AppState.Error -> {
                 binding.loading.visibility = View.GONE
-                val throwable = appState.error
-                makeSnackbar(getString(R.string.appStateError) + throwable.localizedMessage)
+                makeSnackbar(getString(R.string.appStateError) + appState.error.localizedMessage)
             }
             AppState.Loading -> binding.loading.visibility = View.VISIBLE
             is AppState.Success -> {
-
                 setDataToAdapter(mainAdapterForTopRated, appState.topRatedData.results)
                 setDataToAdapter(mainAdapterForNew, appState.newData.results)
                 setDataToAdapter(mainAdapterForUpcoming, appState.upcomingData.results)
                 binding.loading.visibility = View.GONE
-                binding.root.makeSnackbar(R.string.appStateSuccess, Snackbar.LENGTH_SHORT)
             }
         }
     }
 
     private fun makeSnackbar(text: String) =
         Snackbar.make(binding.root, text, Snackbar.LENGTH_SHORT).show()
-
-    private fun View.makeSnackbar(textId: Int, snackbarLength: Int) =
-        Snackbar.make(this, getString(textId), snackbarLength).show()
 
     private fun setDataToAdapter(adapter: MainAdapter, data: List<MoviesListResultDTO>) =
         adapter.setData(data)

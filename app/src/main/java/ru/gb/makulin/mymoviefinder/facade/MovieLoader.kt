@@ -16,14 +16,21 @@ class MovieLoader(private val listener: MovieLoaderListener) {
             URL("https://api.themoviedb.org/3/movie/${id}?api_key=${BuildConfig.MOVIE_API_KEY}&language=${language}")
 
         Thread {
-            val urlConnection = url.openConnection() as HttpsURLConnection
-            urlConnection.requestMethod = "GET"
-            urlConnection.readTimeout = 10000
-            val reader = BufferedReader(InputStreamReader(urlConnection.inputStream))
-            val movieDTO = Gson().fromJson(reader, MovieDTO::class.java)
+            val urlConnection by lazy {
+                url.openConnection() as HttpsURLConnection
+            }
             val handler = Handler(Looper.getMainLooper())
-            handler.post { listener.onLoaded(movieDTO) }
-            urlConnection.disconnect()
+            try {
+                urlConnection.requestMethod = "GET"
+                urlConnection.readTimeout = 10000
+                val reader = BufferedReader(InputStreamReader(urlConnection.inputStream))
+                val movieDTO = Gson().fromJson(reader, MovieDTO::class.java)
+                handler.post { listener.onLoaded(movieDTO) }
+            } catch (e: RuntimeException) {
+                handler.post { listener.onFailed(e) }
+            } finally {
+                urlConnection.disconnect()
+            }
         }.start()
     }
 }

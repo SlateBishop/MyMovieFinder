@@ -12,12 +12,6 @@ class MainViewModel(
     private val liveDataToObserve: MutableLiveData<AppState> = MutableLiveData(),
 ) : ViewModel(), MoviesListLoaderListener {
 
-    companion object {
-        private const val RU_LANG = "ru-RU"
-        private const val EN_LANG = "en-US"
-        private const val LOAD_ERROR = "Ошибка загрузки данных"
-    }
-
     fun getLiveData(): LiveData<AppState> = liveDataToObserve
 
     fun getDataFromRemote() {
@@ -34,6 +28,6 @@ class MainViewModel(
     }
 
     override fun onFailed(throwable: Throwable) {
-        liveDataToObserve.value = AppState.Error(RuntimeException(LOAD_ERROR))
+        liveDataToObserve.value = AppState.Error(throwable)
     }
 }
