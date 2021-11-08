@@ -9,4 +9,7 @@
     <string name="details_rating_label">Rating</string>
     <string name="onFailedDataLoadingText">Ошибка загрузки данных</string>
     <string name="menu_home_text">На главную</string>
+    <string name="LogTAG">mylogs</string>
+    <string name="connection_lost_msg">Соединение потеряно</string>
+    <string name="connection_found_msg">Соединение установлено</string>
 </resources>
