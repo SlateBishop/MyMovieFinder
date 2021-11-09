@@ -48,7 +48,7 @@ class DetailsFragment : Fragment(), MovieLoaderListener {
         super.onViewCreated(view, savedInstanceState)
         arguments?.let {
             val movie = it.getParcelable<MoviesListResultDTO>(BUNDLE_KEY)
-            MovieLoader(this).loadMovie(movie!!.id)
+//            MovieLoader(this).loadMovie(movie!!.id)
         }
     }
 
