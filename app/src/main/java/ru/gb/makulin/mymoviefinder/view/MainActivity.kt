@@ -1,14 +1,11 @@
 package ru.gb.makulin.mymoviefinder.view
 
-import android.content.IntentFilter
-import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import ru.gb.makulin.mymoviefinder.R
-import ru.gb.makulin.mymoviefinder.lesson6.ConnectivityBroadcastReceiver
 import ru.gb.makulin.mymoviefinder.view.main.MainFragment
 
 class MainActivity : AppCompatActivity() {

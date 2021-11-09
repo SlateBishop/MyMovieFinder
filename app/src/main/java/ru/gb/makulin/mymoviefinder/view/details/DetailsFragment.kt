@@ -36,15 +36,14 @@ class DetailsFragment : Fragment(), MovieLoaderListener {
 
     private val receiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
-            makeErrSnackbar()
-//            intent?.let {
-//                val movieDTO = it.getParcelableExtra<MovieDTO>(DETAILS_LOAD_RESULT_EXTRA)
-//                if (movieDTO != null) {
-//                    setData(movieDTO)
-//                } else {
-//                    makeErrSnackbar()
-//                }
-//            }
+            intent?.let {
+                val movieDTO = it.getParcelableExtra<MovieDTO>(DETAILS_LOAD_RESULT_EXTRA)
+                if (movieDTO != null) {
+                    setData(movieDTO)
+                } else {
+                    makeErrSnackbar()
+                }
+            }
         }
     }
 

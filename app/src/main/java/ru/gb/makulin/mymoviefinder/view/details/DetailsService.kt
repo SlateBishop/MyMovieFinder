@@ -2,8 +2,6 @@ package ru.gb.makulin.mymoviefinder.view.details
 
 import android.app.IntentService
 import android.content.Intent
-import android.os.Handler
-import android.os.Looper
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.google.gson.Gson
 import ru.gb.makulin.mymoviefinder.BuildConfig
