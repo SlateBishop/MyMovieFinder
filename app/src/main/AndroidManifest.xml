@@ -25,9 +25,11 @@
             android:name=".lesson6.ConnectivityBroadcastReceiver"
             android:exported="true">
             <intent-filter>
-                <action android:name="CONNECTIVITY_ACTION"/>
+                <action android:name="CONNECTIVITY_ACTION" />
             </intent-filter>
         </receiver>
+
+        <service android:name=".view.details.DetailsService" />
     </application>
 
 </manifest>

@@ -1,16 +1,20 @@
 package ru.gb.makulin.mymoviefinder.view.details
 
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.google.android.material.snackbar.Snackbar
 import ru.gb.makulin.mymoviefinder.R
 import ru.gb.makulin.mymoviefinder.databinding.FragmentDetailsBinding
 import ru.gb.makulin.mymoviefinder.facade.MovieDTO
-import ru.gb.makulin.mymoviefinder.facade.MovieLoader
 import ru.gb.makulin.mymoviefinder.facade.MovieLoaderListener
 import ru.gb.makulin.mymoviefinder.facade.MoviesListResultDTO
 
@@ -30,6 +34,24 @@ class DetailsFragment : Fragment(), MovieLoaderListener {
     private val binding: FragmentDetailsBinding
         get() = _binding!!
 
+    private val receiver: BroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            intent?.let {
+                val movieDTO = it.getParcelableExtra<MovieDTO>(DETAILS_LOAD_RESULT_EXTRA)
+                if (movieDTO != null) {
+                    setData(movieDTO)
+                } else {
+                    makeErrSnackbar()
+                }
+            }
+        }
+    }
+
+    private val movie by lazy {
+        arguments?.getParcelable<MoviesListResultDTO>(BUNDLE_KEY)
+    }
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -46,10 +68,25 @@ class DetailsFragment : Fragment(), MovieLoaderListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        arguments?.let {
-            val movie = it.getParcelable<MoviesListResultDTO>(BUNDLE_KEY)
-//            MovieLoader(this).loadMovie(movie!!.id)
+        startDetailsService()
+        registerReceiver()
+    }
+
+    private fun startDetailsService() {
+        if (movie != null) {
+            val intent = Intent(requireContext(), DetailsService::class.java)
+            intent.putExtra(ID_EXTRA, movie!!.id)
+            requireContext().startService(intent)
         }
+    }
+
+    private fun registerReceiver() {
+        LocalBroadcastManager
+            .getInstance(requireContext())
+            .registerReceiver(
+                receiver,
+                IntentFilter(DETAILS_INTENT_FILTER)
+            )
     }
 
     private fun setData(movieDTO: MovieDTO) {
@@ -77,6 +114,18 @@ class DetailsFragment : Fragment(), MovieLoaderListener {
             getString(R.string.onFailedDataLoadingText),
             Snackbar.LENGTH_SHORT
         ).show()
+    }
+
+    private fun makeErrSnackbar() {
+        val snackBar = Snackbar.make(
+            binding.root,
+            getString(R.string.details_snackbar_err_msg),
+            Snackbar.LENGTH_LONG
+        )
+        snackBar.setAction(getString(R.string.details_snackbar_err_action), View.OnClickListener {
+            startDetailsService()
+        })
+        snackBar.show()
     }
 
 }

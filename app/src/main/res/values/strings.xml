@@ -12,4 +12,6 @@
     <string name="LogTAG">mylogs</string>
     <string name="connection_lost_msg">Соединение потеряно</string>
     <string name="connection_found_msg">Соединение установлено</string>
+    <string name="details_snackbar_err_msg">Ошибка</string>
+    <string name="details_snackbar_err_action">ПЕРЕЗАГРУЗИТЬ</string>
 </resources>
