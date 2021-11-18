@@ -13,14 +13,14 @@ interface MovieApi {
         @Query(MOVIE_API_KEY_NAME) apikey: String,
         @Query("page") page: Int = 1,
         @Query("language") lang: String = "ru-RU"
-    ):Call<MoviesListDTO>
+    ):Call<List<MoviesListDTO>>
 
     @GET(MOVIE_API_URL_END_POINT_NOW_PLAYING)
     fun getNowPlayingMovies(
         @Query(MOVIE_API_KEY_NAME) apikey: String,
         @Query("page") page: Int = 1,
         @Query("language") lang: String = "ru-RU"
-    ):Call<MoviesListDTO>
+    ):Call<List<MoviesListDTO>>
 
 
     @GET(MOVIE_API_URL_END_POINT_UPCOMING)
@@ -28,12 +28,12 @@ interface MovieApi {
         @Query(MOVIE_API_KEY_NAME) apikey: String,
         @Query("page") page: Int = 1,
         @Query("language") lang: String = "ru-RU"
-    ):Call<MoviesListDTO>
+    ):Call<List<MoviesListDTO>>
 
     @GET(MOVIE_API_URL_END_POINT_DETAILS)
     fun getMovieDetails(
         @Path(MOVIE_API_URL_ID_PATH_DETAILS) movieId: Int,
         @Query(MOVIE_API_KEY_NAME) apikey: String,
         @Query("language") lang: String = "ru-RU"
-    ):Call<MoviesListResultDTO>
+    ):Call<MovieDTO>
 }
