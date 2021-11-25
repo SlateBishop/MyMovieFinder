@@ -6,15 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import ru.gb.makulin.mymoviefinder.R
 import ru.gb.makulin.mymoviefinder.databinding.FragmentDetailsBinding
 import ru.gb.makulin.mymoviefinder.facade.MovieDTO
-import ru.gb.makulin.mymoviefinder.facade.MovieLoader
-import ru.gb.makulin.mymoviefinder.facade.MovieLoaderListener
 import ru.gb.makulin.mymoviefinder.facade.MoviesListResultDTO
+import ru.gb.makulin.mymoviefinder.utils.makeSnackbar
+import ru.gb.makulin.mymoviefinder.viewmodel.AppState
+import ru.gb.makulin.mymoviefinder.viewmodel.DetailsViewModel
 
-class DetailsFragment : Fragment(), MovieLoaderListener {
+class DetailsFragment : Fragment() {
 
     companion object {
         fun newInstance(bundle: Bundle): DetailsFragment {
@@ -25,6 +27,12 @@ class DetailsFragment : Fragment(), MovieLoaderListener {
 
         const val BUNDLE_KEY = "movie_key"
     }
+
+    private val viewModel: DetailsViewModel by lazy {
+        ViewModelProvider(this).get(DetailsViewModel::class.java)
+    }
+
+    private lateinit var movie: MoviesListResultDTO
 
     private var _binding: FragmentDetailsBinding? = null
     private val binding: FragmentDetailsBinding
@@ -47,8 +55,38 @@ class DetailsFragment : Fragment(), MovieLoaderListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         arguments?.let {
-            val movie = it.getParcelable<MoviesListResultDTO>(BUNDLE_KEY)
-            MovieLoader(this).loadMovie(movie!!.id)
+            movie = it.getParcelable<MoviesListResultDTO>(BUNDLE_KEY)!!
+            observeOnViewModel()
+            getMovie(movie)
+        }
+    }
+
+    private fun getMovie(movie: MoviesListResultDTO) {
+        viewModel.getMovieFromRemote(movie.id)
+    }
+
+    private fun observeOnViewModel() {
+        viewModel.getLiveData().observe(viewLifecycleOwner, {
+            renderData(it)
+        })
+    }
+
+    private fun renderData(appState: AppState) {
+        when (appState) {
+            is AppState.Error -> {
+                binding.loading.visibility = View.GONE
+                binding.root.makeSnackbar(
+                    getString(R.string.onFailedDataLoadingText),
+                    getString(R.string.snackActionText)
+                ) {
+                    getMovie(movie)
+                }
+            }
+            AppState.Loading -> binding.loading.visibility = View.VISIBLE
+            is AppState.SuccessMovie -> {
+                setData(appState.movieDTO)
+                binding.loading.visibility = View.GONE
+            }
         }
     }
 
@@ -65,18 +103,4 @@ class DetailsFragment : Fragment(), MovieLoaderListener {
             }
         }
     }
-
-    override fun onLoaded(movieDTO: MovieDTO) {
-        setData(movieDTO)
-    }
-
-    override fun onFailed(throwable: Throwable) {
-        Log.e("mylogs", throwable.localizedMessage, throwable)
-        Snackbar.make(
-            binding.root,
-            getString(R.string.onFailedDataLoadingText),
-            Snackbar.LENGTH_SHORT
-        ).show()
-    }
-
 }

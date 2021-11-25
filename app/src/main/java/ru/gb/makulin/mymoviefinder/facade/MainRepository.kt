@@ -18,10 +18,4 @@ interface MainRepository {
         page: Int = 1,
         lang: String = "ru-RU"
     )
-
-    fun getMovieDetailsFromServer(
-        callback: retrofit2.Callback<MovieDTO>,
-        movieId: Int,
-        lang: String = "ru-RU"
-    )
 }

@@ -26,14 +26,4 @@ class MainRepositoryImpl(private val remoteDataSource: RemoteDataSource) : MainR
     ) {
         remoteDataSource.getUpcomingMoviesList(callback, page, lang)
     }
-
-    override fun getMovieDetailsFromServer(
-        callback: Callback<MovieDTO>,
-        movieId: Int,
-        lang: String
-    ) {
-        remoteDataSource.getMovieDetails(callback, movieId, lang)
-    }
-
-
 }

@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.snackbar.Snackbar
 import ru.gb.makulin.mymoviefinder.R
 import ru.gb.makulin.mymoviefinder.databinding.FragmentMainBinding
 import ru.gb.makulin.mymoviefinder.facade.MoviesListResultDTO
+import ru.gb.makulin.mymoviefinder.utils.makeSnackbar
 import ru.gb.makulin.mymoviefinder.view.details.DetailsFragment
 import ru.gb.makulin.mymoviefinder.viewmodel.AppState
 import ru.gb.makulin.mymoviefinder.viewmodel.MainViewModel
@@ -43,6 +43,10 @@ class MainFragment : Fragment(), OnItemClickListener {
         super.onViewCreated(view, savedInstanceState)
         setAdapters()
         observeOnViewModel()
+        getMoviesList()
+    }
+
+    private fun getMoviesList() {
         viewModel.getMoviesListFromRemote()
     }
 
@@ -67,10 +71,15 @@ class MainFragment : Fragment(), OnItemClickListener {
         when (appState) {
             is AppState.Error -> {
                 binding.loading.visibility = View.GONE
-                makeSnackbar(getString(R.string.appStateError) + appState.errorCode)
+                binding.root.makeSnackbar(
+                    getString(R.string.onFailedDataLoadingText),
+                    getString(R.string.snackActionText)
+                ) {
+                    getMoviesList()
+                }
             }
             AppState.Loading -> binding.loading.visibility = View.VISIBLE
-            is AppState.Success -> {
+            is AppState.SuccessMoviesLists -> {
                 setDataToAdapter(mainAdapterForTopRated, appState.topRatedData.results)
                 setDataToAdapter(mainAdapterForNew, appState.newData.results)
                 setDataToAdapter(mainAdapterForUpcoming, appState.upcomingData.results)
@@ -78,9 +87,6 @@ class MainFragment : Fragment(), OnItemClickListener {
             }
         }
     }
-
-    private fun makeSnackbar(text: String) =
-        Snackbar.make(binding.root, text, Snackbar.LENGTH_SHORT).show()
 
     private fun setDataToAdapter(adapter: MainAdapter, data: List<MoviesListResultDTO>) =
         adapter.setData(data)

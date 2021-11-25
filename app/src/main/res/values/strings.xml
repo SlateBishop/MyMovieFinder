@@ -9,4 +9,5 @@
     <string name="details_rating_label">Rating</string>
     <string name="onFailedDataLoadingText">Ошибка загрузки данных</string>
     <string name="menu_home_text">На главную</string>
+    <string name="snackActionText">Перезагрузить</string>
 </resources>

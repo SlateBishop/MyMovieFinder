@@ -73,7 +73,7 @@ class MainViewModel(
             Если получится, то переделаю код под запросы через Observable.zip()
             Upd не разобрался с RxJava2 с наскоку.
              */
-            mainLiveDataToObserve.value = AppState.Success(
+            mainLiveDataToObserve.value = AppState.SuccessMoviesLists(
                 moviesList[TOP_RATED_INDEX],
                 moviesList[NOW_PLAYING_INDEX],
                 moviesList[UPCOMING_INDEX]
