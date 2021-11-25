@@ -67,7 +67,7 @@ class MainFragment : Fragment(), OnItemClickListener {
         when (appState) {
             is AppState.Error -> {
                 binding.loading.visibility = View.GONE
-                makeSnackbar(getString(R.string.appStateError) + appState.error.localizedMessage)
+                makeSnackbar(getString(R.string.appStateError) + appState.errorCode)
             }
             AppState.Loading -> binding.loading.visibility = View.VISIBLE
             is AppState.Success -> {

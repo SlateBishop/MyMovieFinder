@@ -17,7 +17,7 @@ class RemoteDataSource {
     }
 
     fun getTopRatedMoviesList(
-        callback: retrofit2.Callback<List<MoviesListDTO>>,
+        callback: retrofit2.Callback<MoviesListDTO>,
         page: Int = 1,
         lang: String = "ru-RU"
     ) {
@@ -25,7 +25,7 @@ class RemoteDataSource {
     }
 
     fun getNowPlayingMoviesList(
-        callback: retrofit2.Callback<List<MoviesListDTO>>,
+        callback: retrofit2.Callback<MoviesListDTO>,
         page: Int = 1,
         lang: String = "ru-RU"
     ) {
@@ -33,7 +33,7 @@ class RemoteDataSource {
     }
 
     fun getUpcomingMoviesList(
-        callback: retrofit2.Callback<List<MoviesListDTO>>,
+        callback: retrofit2.Callback<MoviesListDTO>,
         page: Int = 1,
         lang: String = "ru-RU"
     ) {

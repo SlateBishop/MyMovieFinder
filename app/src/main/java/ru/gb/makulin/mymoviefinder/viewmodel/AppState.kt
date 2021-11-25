@@ -10,5 +10,5 @@ sealed class AppState {
         val upcomingData: MoviesListDTO
     ) : AppState()
 
-    data class Error(val error: Throwable) : AppState()
+    data class Error(val errorCode: String) : AppState()
 }
