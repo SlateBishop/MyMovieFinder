@@ -7,3 +7,6 @@ const val MOVIE_API_URL_END_POINT_TOP_RATED = "3/movie/top_rated"
 const val MOVIE_API_URL_END_POINT_DETAILS = "3/movie/{movie_id}"
 const val MOVIE_API_URL_ID_PATH_DETAILS = "movie_id"
 const val MOVIE_API_KEY_NAME = "api_key"
+const val MOVIE_API_PAGE_NAME = "page"
+const val MOVIE_API_LANGUAGE_NAME = "language"
+

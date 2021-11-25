@@ -9,12 +9,12 @@ import ru.gb.makulin.mymoviefinder.facade.MoviesListLoaderListener
 
 
 class MainViewModel(
-    private val liveDataToObserve: MutableLiveData<AppState> = MutableLiveData(),
+    private val liveDataToObserve: MutableLiveData<AppState> = MutableLiveData()
 ) : ViewModel(), MoviesListLoaderListener {
 
     fun getLiveData(): LiveData<AppState> = liveDataToObserve
 
-    fun getDataFromRemote() {
+    fun getMoviesListFromRemote() {
         liveDataToObserve.value = AppState.Loading
         MoviesListLoader(this).loadMovies()
     }

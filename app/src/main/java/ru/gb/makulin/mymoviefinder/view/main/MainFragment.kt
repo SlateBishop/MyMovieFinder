@@ -43,7 +43,7 @@ class MainFragment : Fragment(), OnItemClickListener {
         super.onViewCreated(view, savedInstanceState)
         setAdapters()
         observeOnViewModel()
-        viewModel.getDataFromRemote()
+        viewModel.getMoviesListFromRemote()
     }
 
     private fun observeOnViewModel() {
