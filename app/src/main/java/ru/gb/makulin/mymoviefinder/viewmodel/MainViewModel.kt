@@ -15,6 +15,12 @@ class MainViewModel(
     private val mainRepositoryImpl: MainRepositoryImpl = MainRepositoryImpl(RemoteDataSource())
 ) : ViewModel() {
 
+    companion object {
+        private const val TOP_RATED_INDEX = 0
+        private const val NOW_PLAYING_INDEX = 1
+        private const val UPCOMING_INDEX = 2
+    }
+
 
     //Костыль, который я не догадался как обойти
     private var moviesList = mutableListOf<MoviesListDTO>(
@@ -28,8 +34,6 @@ class MainViewModel(
     fun getMoviesListFromRemote() {
         mainLiveDataToObserve.value = AppState.Loading
         getDataFromServer()
-
-
     }
 
     private fun getDataFromServer() {
@@ -40,7 +44,7 @@ class MainViewModel(
 
     private val topRatedCallback = object : retrofit2.Callback<MoviesListDTO> {
         override fun onResponse(call: Call<MoviesListDTO>, response: Response<MoviesListDTO>) {
-            onCallbackResponse(0, response)
+            onCallbackResponse(TOP_RATED_INDEX, response)
         }
 
         override fun onFailure(call: Call<MoviesListDTO>, t: Throwable) {
@@ -50,7 +54,7 @@ class MainViewModel(
 
     private val nowPlayingCallback = object : retrofit2.Callback<MoviesListDTO> {
         override fun onResponse(call: Call<MoviesListDTO>, response: Response<MoviesListDTO>) {
-            onCallbackResponse(1, response)
+            onCallbackResponse(NOW_PLAYING_INDEX, response)
         }
 
         override fun onFailure(call: Call<MoviesListDTO>, t: Throwable) {
@@ -60,17 +64,19 @@ class MainViewModel(
 
     private val upcomingCallback = object : retrofit2.Callback<MoviesListDTO> {
         override fun onResponse(call: Call<MoviesListDTO>, response: Response<MoviesListDTO>) {
-            onCallbackResponse(2, response)
+            onCallbackResponse(UPCOMING_INDEX, response)
             /*
+            Второй костыль.
             Добавил передачу данных через LiveData тут, т.к. запросы через ретрофит обрабатываются
             асинхронно через enqueue(), а данный запрос последний в очереди.
 
             Если получится, то переделаю код под запросы через Observable.zip()
+            Upd не разобрался с RxJava2 с наскоку.
              */
             mainLiveDataToObserve.value = AppState.Success(
-                moviesList[0],
-                moviesList[1],
-                moviesList[2]
+                moviesList[TOP_RATED_INDEX],
+                moviesList[NOW_PLAYING_INDEX],
+                moviesList[UPCOMING_INDEX]
             )
         }
 
