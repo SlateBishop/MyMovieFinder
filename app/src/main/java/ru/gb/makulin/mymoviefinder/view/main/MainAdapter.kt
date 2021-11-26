@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import ru.gb.makulin.mymoviefinder.databinding.MoviesListItemBinding
-import ru.gb.makulin.mymoviefinder.facade.MoviesListResultDTO
+import ru.gb.makulin.mymoviefinder.facade.main.MoviesListResultDTO
 import ru.gb.makulin.mymoviefinder.utils.POSTER_BASE_URL
 
 class MainAdapter : RecyclerView.Adapter<MainAdapter.MainFragmentHolder>() {

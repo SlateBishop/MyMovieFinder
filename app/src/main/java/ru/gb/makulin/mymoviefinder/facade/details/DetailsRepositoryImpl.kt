@@ -1,6 +1,7 @@
-package ru.gb.makulin.mymoviefinder.facade
+package ru.gb.makulin.mymoviefinder.facade.details
 
 import retrofit2.Callback
+import ru.gb.makulin.mymoviefinder.facade.RemoteDataSource
 
 class DetailsRepositoryImpl(private val remoteDataSource: RemoteDataSource) : DetailsRepository {
 

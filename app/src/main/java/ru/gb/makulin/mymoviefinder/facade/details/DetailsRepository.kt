@@ -1,4 +1,4 @@
-package ru.gb.makulin.mymoviefinder.facade
+package ru.gb.makulin.mymoviefinder.facade.details
 
 interface DetailsRepository {
 

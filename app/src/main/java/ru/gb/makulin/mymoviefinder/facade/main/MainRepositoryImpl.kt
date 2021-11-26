@@ -1,6 +1,7 @@
-package ru.gb.makulin.mymoviefinder.facade
+package ru.gb.makulin.mymoviefinder.facade.main
 
 import retrofit2.Callback
+import ru.gb.makulin.mymoviefinder.facade.RemoteDataSource
 
 class MainRepositoryImpl(private val remoteDataSource: RemoteDataSource) : MainRepository {
     override fun getTopRatedMoviesListFromServer(

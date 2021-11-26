@@ -4,6 +4,8 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
+import ru.gb.makulin.mymoviefinder.facade.details.MovieDTO
+import ru.gb.makulin.mymoviefinder.facade.main.MoviesListDTO
 import ru.gb.makulin.mymoviefinder.utils.*
 
 interface MovieApi {

@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import ru.gb.makulin.mymoviefinder.R
 import ru.gb.makulin.mymoviefinder.databinding.FragmentMainBinding
-import ru.gb.makulin.mymoviefinder.facade.MoviesListResultDTO
+import ru.gb.makulin.mymoviefinder.facade.main.MoviesListResultDTO
 import ru.gb.makulin.mymoviefinder.utils.makeSnackbar
 import ru.gb.makulin.mymoviefinder.view.details.DetailsFragment
 import ru.gb.makulin.mymoviefinder.viewmodel.AppState

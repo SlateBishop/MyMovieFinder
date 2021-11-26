@@ -1,4 +1,4 @@
-package ru.gb.makulin.mymoviefinder.facade
+package ru.gb.makulin.mymoviefinder.facade.details
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

@@ -5,9 +5,9 @@ import androidx.lifecycle.ViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import ru.gb.makulin.mymoviefinder.facade.DetailsRepositoryImpl
-import ru.gb.makulin.mymoviefinder.facade.MovieDTO
 import ru.gb.makulin.mymoviefinder.facade.RemoteDataSource
+import ru.gb.makulin.mymoviefinder.facade.details.DetailsRepositoryImpl
+import ru.gb.makulin.mymoviefinder.facade.details.MovieDTO
 
 class DetailsViewModel(
     private val detailsLiveDataToObserve: MutableLiveData<AppState> = MutableLiveData(),

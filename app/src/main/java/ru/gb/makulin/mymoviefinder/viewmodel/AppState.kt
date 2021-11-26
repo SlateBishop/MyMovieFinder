@@ -1,7 +1,7 @@
 package ru.gb.makulin.mymoviefinder.viewmodel
 
-import ru.gb.makulin.mymoviefinder.facade.MovieDTO
-import ru.gb.makulin.mymoviefinder.facade.MoviesListDTO
+import ru.gb.makulin.mymoviefinder.facade.details.MovieDTO
+import ru.gb.makulin.mymoviefinder.facade.main.MoviesListDTO
 
 sealed class AppState {
     object Loading : AppState()

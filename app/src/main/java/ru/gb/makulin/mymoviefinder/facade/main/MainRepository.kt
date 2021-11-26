@@ -1,4 +1,4 @@
-package ru.gb.makulin.mymoviefinder.facade
+package ru.gb.makulin.mymoviefinder.facade.main
 
 interface MainRepository {
     fun getTopRatedMoviesListFromServer(

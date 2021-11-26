@@ -5,9 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import retrofit2.Call
 import retrofit2.Response
-import ru.gb.makulin.mymoviefinder.facade.MainRepositoryImpl
-import ru.gb.makulin.mymoviefinder.facade.MoviesListDTO
 import ru.gb.makulin.mymoviefinder.facade.RemoteDataSource
+import ru.gb.makulin.mymoviefinder.facade.main.MainRepositoryImpl
+import ru.gb.makulin.mymoviefinder.facade.main.MoviesListDTO
 
 
 class MainViewModel(

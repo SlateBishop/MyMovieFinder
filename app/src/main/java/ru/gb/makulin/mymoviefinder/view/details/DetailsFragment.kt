@@ -9,8 +9,8 @@ import androidx.lifecycle.ViewModelProvider
 import coil.load
 import ru.gb.makulin.mymoviefinder.R
 import ru.gb.makulin.mymoviefinder.databinding.FragmentDetailsBinding
-import ru.gb.makulin.mymoviefinder.facade.MovieDTO
-import ru.gb.makulin.mymoviefinder.facade.MoviesListResultDTO
+import ru.gb.makulin.mymoviefinder.facade.details.MovieDTO
+import ru.gb.makulin.mymoviefinder.facade.main.MoviesListResultDTO
 import ru.gb.makulin.mymoviefinder.utils.POSTER_BASE_URL
 import ru.gb.makulin.mymoviefinder.utils.makeSnackbar
 import ru.gb.makulin.mymoviefinder.viewmodel.AppState

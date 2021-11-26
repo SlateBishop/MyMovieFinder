@@ -4,6 +4,8 @@ import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.gb.makulin.mymoviefinder.BuildConfig
+import ru.gb.makulin.mymoviefinder.facade.details.MovieDTO
+import ru.gb.makulin.mymoviefinder.facade.main.MoviesListDTO
 import ru.gb.makulin.mymoviefinder.utils.BASE_MOVIE_API_URL
 
 class RemoteDataSource {
