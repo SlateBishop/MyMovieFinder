@@ -7,11 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import coil.load
 import com.google.android.material.snackbar.Snackbar
 import ru.gb.makulin.mymoviefinder.R
 import ru.gb.makulin.mymoviefinder.databinding.FragmentDetailsBinding
 import ru.gb.makulin.mymoviefinder.facade.MovieDTO
 import ru.gb.makulin.mymoviefinder.facade.MoviesListResultDTO
+import ru.gb.makulin.mymoviefinder.utils.POSTER_BASE_URL
 import ru.gb.makulin.mymoviefinder.utils.makeSnackbar
 import ru.gb.makulin.mymoviefinder.viewmodel.AppState
 import ru.gb.makulin.mymoviefinder.viewmodel.DetailsViewModel
@@ -99,7 +101,7 @@ class DetailsFragment : Fragment() {
                 filmDetailRating.text = vote_average.toString()
                 filmDetailDescription.text = overview
                 filmDetailReleaseDate.text = release_date
-                filmDetailImage.setImageResource(R.drawable.ic_launcher_background)  //FIXME later
+                filmDetailImage.load(POSTER_BASE_URL + movieDTO.poster_path)
             }
         }
     }

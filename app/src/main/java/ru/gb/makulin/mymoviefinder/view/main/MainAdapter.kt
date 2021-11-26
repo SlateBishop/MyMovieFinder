@@ -3,9 +3,10 @@ package ru.gb.makulin.mymoviefinder.view.main
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import ru.gb.makulin.mymoviefinder.R
+import coil.load
 import ru.gb.makulin.mymoviefinder.databinding.MoviesListItemBinding
 import ru.gb.makulin.mymoviefinder.facade.MoviesListResultDTO
+import ru.gb.makulin.mymoviefinder.utils.POSTER_BASE_URL
 
 class MainAdapter : RecyclerView.Adapter<MainAdapter.MainFragmentHolder>() {
 
@@ -46,7 +47,7 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.MainFragmentHolder>() {
 
         fun bind(movie: MoviesListResultDTO) {
             binding.apply {
-                cardPoster.setImageResource(R.drawable.ic_launcher_background) //FIXME later
+                cardPoster.load(POSTER_BASE_URL + movie.poster_path)
                 cardTitle.text = movie.title
                 cardYear.text = movie.release_date
                 cardRating.text = movie.vote_average.toString()

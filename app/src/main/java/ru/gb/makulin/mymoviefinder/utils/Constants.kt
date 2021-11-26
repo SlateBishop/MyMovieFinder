@@ -9,4 +9,4 @@ const val MOVIE_API_URL_ID_PATH_DETAILS = "movie_id"
 const val MOVIE_API_KEY_NAME = "api_key"
 const val MOVIE_API_PAGE_NAME = "page"
 const val MOVIE_API_LANGUAGE_NAME = "language"
-
+const val POSTER_BASE_URL = "https://image.tmdb.org/t/p/w500"
