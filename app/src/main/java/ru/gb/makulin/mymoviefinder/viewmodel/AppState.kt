@@ -1,14 +1,16 @@
 package ru.gb.makulin.mymoviefinder.viewmodel
 
-import ru.gb.makulin.mymoviefinder.model.Movie
+import ru.gb.makulin.mymoviefinder.facade.details.MovieDTO
+import ru.gb.makulin.mymoviefinder.facade.main.MoviesListDTO
 
 sealed class AppState {
     object Loading : AppState()
-    data class Success(
-        val topRatedData: List<Movie>,
-        val newData: List<Movie>,
-        val upcomingData: List<Movie>
-    ) : AppState()  //FIXME разделить модель и вьюмодел
+    data class SuccessMoviesLists(
+        val topRatedData: MoviesListDTO,
+        val newData: MoviesListDTO,
+        val upcomingData: MoviesListDTO
+    ) : AppState()
 
-    data class Error(val error: Throwable) : AppState()
+    data class SuccessMovie(val movieDTO: MovieDTO) : AppState()
+    data class Error(val errorCode: String) : AppState()
 }

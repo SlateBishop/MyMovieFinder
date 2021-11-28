@@ -1,17 +1,23 @@
-package ru.gb.makulin.mymoviefinder.view
+package ru.gb.makulin.mymoviefinder.view.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import ru.gb.makulin.mymoviefinder.R
+import coil.load
 import ru.gb.makulin.mymoviefinder.databinding.MoviesListItemBinding
-import ru.gb.makulin.mymoviefinder.model.Movie
+import ru.gb.makulin.mymoviefinder.facade.main.MoviesListResultDTO
+import ru.gb.makulin.mymoviefinder.utils.POSTER_BASE_URL
 
 class MainAdapter : RecyclerView.Adapter<MainAdapter.MainFragmentHolder>() {
 
-    private var moviesData: List<Movie> = listOf()
+    private var moviesData: List<MoviesListResultDTO> = listOf()
+    private lateinit var listener: OnItemClickListener
 
-    fun setData(data: List<Movie>) {
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        this.listener = listener
+    }
+
+    fun setData(data: List<MoviesListResultDTO>) {
         moviesData = data
         notifyDataSetChanged()
     }
@@ -19,12 +25,12 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.MainFragmentHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): MainAdapter.MainFragmentHolder {
+    ): MainFragmentHolder {
         val binding = MoviesListItemBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
-        ) //TODO будет ли здесь утечка пямяти?
+        )
         return MainFragmentHolder(binding)
     }
 
@@ -38,15 +44,17 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.MainFragmentHolder>() {
 
     inner class MainFragmentHolder(private val binding: MoviesListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(movie: Movie) { //FIXME в будущем избежать прямой связи с моделью!!!
-            binding.apply {
-                cardPoster.setImageResource(R.drawable.ic_launcher_background)
-                cardTitle.text = movie.name
-                cardYear.text = movie.year
-                cardRating.text = movie.ratio.toString()
 
+        fun bind(movie: MoviesListResultDTO) {
+            binding.apply {
+                cardPoster.load(POSTER_BASE_URL + movie.poster_path)
+                cardTitle.text = movie.title
+                cardYear.text = movie.release_date
+                cardRating.text = movie.vote_average.toString()
+                root.setOnClickListener {
+                    listener.onItemClick(movie)
+                }
             }
         }
-
     }
 }

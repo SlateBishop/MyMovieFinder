@@ -2,6 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/moviesListItem"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/card_margin"
@@ -25,7 +26,7 @@
             android:layout_width="@dimen/card_width"
             android:layout_height="wrap_content"
             android:textSize="@dimen/card_text_size"
-            tools:text="aaaaaaaaaaaaaaaaaaaaaaaaaaa" />
+            tools:text="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" />
 
         <LinearLayout
             android:layout_width="@dimen/card_width"
