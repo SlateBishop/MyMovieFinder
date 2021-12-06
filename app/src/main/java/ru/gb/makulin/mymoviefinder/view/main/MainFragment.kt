@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import ru.gb.makulin.mymoviefinder.R
 import ru.gb.makulin.mymoviefinder.databinding.FragmentMainBinding
 import ru.gb.makulin.mymoviefinder.facade.main.MoviesListResultDTO
+import ru.gb.makulin.mymoviefinder.utils.makeErrSnackbar
 import ru.gb.makulin.mymoviefinder.utils.makeSnackbar
 import ru.gb.makulin.mymoviefinder.view.details.DetailsFragment
 import ru.gb.makulin.mymoviefinder.viewmodel.AppState
@@ -50,6 +51,18 @@ class MainFragment : Fragment(), OnItemClickListener {
         viewModel.getMoviesListFromRemote()
     }
 
+    private fun getTopRatedMovies() {
+        viewModel.getTopRatedMoviesListFromServer()
+    }
+
+    private fun getNowPlayingMovies() {
+        viewModel.getNowPlayingMoviesListFromServer()
+    }
+
+    private fun getUpcomingMovies() {
+        viewModel.getUpcomingMoviesListFromServer()
+    }
+
     private fun observeOnViewModel() {
         viewModel.getLiveData().observe(viewLifecycleOwner, {
             renderData(it)
@@ -79,11 +92,39 @@ class MainFragment : Fragment(), OnItemClickListener {
                 }
             }
             AppState.Loading -> binding.loading.visibility = View.VISIBLE
-            is AppState.SuccessMoviesLists -> {
-                setDataToAdapter(mainAdapterForTopRated, appState.topRatedData.results)
-                setDataToAdapter(mainAdapterForNew, appState.newData.results)
-                setDataToAdapter(mainAdapterForUpcoming, appState.upcomingData.results)
+
+            is AppState.ErrorNowPlayingMovies -> {
                 binding.loading.visibility = View.GONE
+                binding.root.makeErrSnackbar(
+                ) {
+                    getNowPlayingMovies()
+                }
+            }
+            is AppState.ErrorTopRatedMovies -> {
+                binding.loading.visibility = View.GONE
+                binding.root.makeErrSnackbar(
+                ) {
+                    getTopRatedMovies()
+                }
+            }
+            is AppState.ErrorUpcomingMovies -> {
+                binding.loading.visibility = View.GONE
+                binding.root.makeErrSnackbar(
+                ) {
+                    getUpcomingMovies()
+                }
+            }
+            is AppState.SuccessNowPlayingMovies -> {
+                binding.loading.visibility = View.GONE
+                setDataToAdapter(mainAdapterForNew, appState.nowPlayingData.results)
+            }
+            is AppState.SuccessTopRatedMovies -> {
+                binding.loading.visibility = View.GONE
+                setDataToAdapter(mainAdapterForTopRated, appState.topRatedData.results)
+            }
+            is AppState.SuccessUpcomingMovies -> {
+                binding.loading.visibility = View.GONE
+                setDataToAdapter(mainAdapterForUpcoming, appState.upcomingData.results)
             }
         }
     }
