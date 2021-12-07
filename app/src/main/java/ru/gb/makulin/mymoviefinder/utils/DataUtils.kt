@@ -27,7 +27,6 @@ fun convertMovieDtoToMovie(movieDTO: MovieDTO): Movie {
             vote_count,
         )
     }
-
 }
 
 fun convertGenresDtoToGenres(genresDTO: List<GenreDTO>): List<Genre> {
@@ -36,14 +35,14 @@ fun convertGenresDtoToGenres(genresDTO: List<GenreDTO>): List<Genre> {
     }
 }
 
-fun convertMoviesListDtoToMoviesList (listDTO: MoviesListDTO) : MoviesList {
+fun convertMoviesListDtoToMoviesList(listDTO: MoviesListDTO): MoviesList {
     return MoviesList(
         listDTO.page,
         convertMoviesListResultDtoToMoviesListResult(listDTO.results)
     )
 }
 
-fun convertMoviesListResultDtoToMoviesListResult (resultDTO: List<MoviesListResultDTO>) : List<MoviesListResult> {
+fun convertMoviesListResultDtoToMoviesListResult(resultDTO: List<MoviesListResultDTO>): List<MoviesListResult> {
     return resultDTO.map {
         with(it) {
             MoviesListResult(
@@ -56,10 +55,4 @@ fun convertMoviesListResultDtoToMoviesListResult (resultDTO: List<MoviesListResu
             )
         }
     }
-
-
-
-
-
-
 }

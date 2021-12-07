@@ -8,6 +8,7 @@ import retrofit2.Response
 import ru.gb.makulin.mymoviefinder.facade.RemoteDataSource
 import ru.gb.makulin.mymoviefinder.facade.main.MainRepositoryImpl
 import ru.gb.makulin.mymoviefinder.facade.main.MoviesListDTO
+import ru.gb.makulin.mymoviefinder.utils.convertMoviesListDtoToMoviesList
 
 
 class MainViewModel(
@@ -43,7 +44,9 @@ class MainViewModel(
     private val topRatedCallback = object : retrofit2.Callback<MoviesListDTO> {
         override fun onResponse(call: Call<MoviesListDTO>, response: Response<MoviesListDTO>) {
             if (response.isSuccessful && response.body() != null) {
-                mainLiveDataToObserve.value = AppState.SuccessTopRatedMovies(response.body()!!)
+                mainLiveDataToObserve.value = AppState.SuccessTopRatedMovies(
+                    convertMoviesListDtoToMoviesList(response.body()!!)
+                )
             } else {
                 mainLiveDataToObserve.value =
                     AppState.ErrorTopRatedMovies(response.code().toString())
@@ -58,7 +61,9 @@ class MainViewModel(
     private val nowPlayingCallback = object : retrofit2.Callback<MoviesListDTO> {
         override fun onResponse(call: Call<MoviesListDTO>, response: Response<MoviesListDTO>) {
             if (response.isSuccessful && response.body() != null) {
-                mainLiveDataToObserve.value = AppState.SuccessNowPlayingMovies(response.body()!!)
+                mainLiveDataToObserve.value = AppState.SuccessNowPlayingMovies(
+                    convertMoviesListDtoToMoviesList(response.body()!!)
+                )
             } else {
                 mainLiveDataToObserve.value =
                     AppState.ErrorNowPlayingMovies(response.code().toString())
@@ -73,7 +78,9 @@ class MainViewModel(
     private val upcomingCallback = object : retrofit2.Callback<MoviesListDTO> {
         override fun onResponse(call: Call<MoviesListDTO>, response: Response<MoviesListDTO>) {
             if (response.isSuccessful && response.body() != null) {
-                mainLiveDataToObserve.value = AppState.SuccessUpcomingMovies(response.body()!!)
+                mainLiveDataToObserve.value = AppState.SuccessUpcomingMovies(
+                    convertMoviesListDtoToMoviesList(response.body()!!)
+                )
             } else {
                 mainLiveDataToObserve.value =
                     AppState.ErrorUpcomingMovies(response.code().toString())

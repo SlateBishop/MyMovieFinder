@@ -5,19 +5,19 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import ru.gb.makulin.mymoviefinder.databinding.MoviesListItemBinding
-import ru.gb.makulin.mymoviefinder.facade.main.MoviesListResultDTO
+import ru.gb.makulin.mymoviefinder.model.MoviesListResult
 import ru.gb.makulin.mymoviefinder.utils.POSTER_BASE_URL
 
 class MainAdapter : RecyclerView.Adapter<MainAdapter.MainFragmentHolder>() {
 
-    private var moviesData: List<MoviesListResultDTO> = listOf()
+    private var moviesData: List<MoviesListResult> = listOf()
     private lateinit var listener: OnItemClickListener
 
     fun setOnItemClickListener(listener: OnItemClickListener) {
         this.listener = listener
     }
 
-    fun setData(data: List<MoviesListResultDTO>) {
+    fun setData(data: List<MoviesListResult>) {
         moviesData = data
         notifyDataSetChanged()
     }
@@ -45,12 +45,12 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.MainFragmentHolder>() {
     inner class MainFragmentHolder(private val binding: MoviesListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(movie: MoviesListResultDTO) {
+        fun bind(movie: MoviesListResult) {
             binding.apply {
-                cardPoster.load(POSTER_BASE_URL + movie.poster_path)
+                cardPoster.load(POSTER_BASE_URL + movie.posterPath)
                 cardTitle.text = movie.title
-                cardYear.text = movie.release_date
-                cardRating.text = movie.vote_average.toString()
+                cardYear.text = movie.releaseDate
+                cardRating.text = movie.voteAverage.toString()
                 root.setOnClickListener {
                     listener.onItemClick(movie)
                 }

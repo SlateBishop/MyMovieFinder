@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import ru.gb.makulin.mymoviefinder.R
 import ru.gb.makulin.mymoviefinder.databinding.FragmentMainBinding
-import ru.gb.makulin.mymoviefinder.facade.main.MoviesListResultDTO
+import ru.gb.makulin.mymoviefinder.model.MoviesListResult
 import ru.gb.makulin.mymoviefinder.utils.makeErrSnackbar
 import ru.gb.makulin.mymoviefinder.utils.makeSnackbar
 import ru.gb.makulin.mymoviefinder.view.details.DetailsFragment
@@ -129,7 +129,7 @@ class MainFragment : Fragment(), OnItemClickListener {
         }
     }
 
-    private fun setDataToAdapter(adapter: MainAdapter, data: List<MoviesListResultDTO>) =
+    private fun setDataToAdapter(adapter: MainAdapter, data: List<MoviesListResult>) =
         adapter.setData(data)
 
     override fun onDestroy() {
@@ -137,7 +137,7 @@ class MainFragment : Fragment(), OnItemClickListener {
         _binding = null
     }
 
-    override fun onItemClick(movie: MoviesListResultDTO) {
+    override fun onItemClick(movie: MoviesListResult) {
         val bundle = Bundle()
         bundle.putParcelable(DetailsFragment.BUNDLE_KEY, movie)
         requireActivity().supportFragmentManager.beginTransaction()

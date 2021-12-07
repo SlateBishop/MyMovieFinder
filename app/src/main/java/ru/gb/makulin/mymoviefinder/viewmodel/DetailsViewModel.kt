@@ -8,6 +8,7 @@ import retrofit2.Response
 import ru.gb.makulin.mymoviefinder.facade.RemoteDataSource
 import ru.gb.makulin.mymoviefinder.facade.details.DetailsRepositoryImpl
 import ru.gb.makulin.mymoviefinder.facade.details.MovieDTO
+import ru.gb.makulin.mymoviefinder.utils.convertMovieDtoToMovie
 
 class DetailsViewModel(
     private val detailsLiveDataToObserve: MutableLiveData<AppState> = MutableLiveData(),
@@ -32,7 +33,8 @@ class DetailsViewModel(
             if (response.isSuccessful && response.body() != null) {
                 val movieDTO = response.body()
                 movieDTO?.let {
-                    detailsLiveDataToObserve.value = AppState.SuccessMovie(it)
+                    detailsLiveDataToObserve.value =
+                        AppState.SuccessMovie(convertMovieDtoToMovie(it))
                 }
             } else {
                 detailsLiveDataToObserve.value = AppState.Error(response.code().toString())

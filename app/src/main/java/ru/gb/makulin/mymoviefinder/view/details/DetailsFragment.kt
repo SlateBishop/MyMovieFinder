@@ -9,8 +9,8 @@ import androidx.lifecycle.ViewModelProvider
 import coil.load
 import ru.gb.makulin.mymoviefinder.R
 import ru.gb.makulin.mymoviefinder.databinding.FragmentDetailsBinding
-import ru.gb.makulin.mymoviefinder.facade.details.MovieDTO
-import ru.gb.makulin.mymoviefinder.facade.main.MoviesListResultDTO
+import ru.gb.makulin.mymoviefinder.model.Movie
+import ru.gb.makulin.mymoviefinder.model.MoviesListResult
 import ru.gb.makulin.mymoviefinder.utils.POSTER_BASE_URL
 import ru.gb.makulin.mymoviefinder.utils.makeSnackbar
 import ru.gb.makulin.mymoviefinder.viewmodel.AppState
@@ -32,7 +32,7 @@ class DetailsFragment : Fragment() {
         ViewModelProvider(this).get(DetailsViewModel::class.java)
     }
 
-    private lateinit var movie: MoviesListResultDTO
+    private lateinit var movie: MoviesListResult
 
     private var _binding: FragmentDetailsBinding? = null
     private val binding: FragmentDetailsBinding
@@ -55,13 +55,13 @@ class DetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         arguments?.let {
-            movie = it.getParcelable<MoviesListResultDTO>(BUNDLE_KEY)!!
+            movie = it.getParcelable<MoviesListResult>(BUNDLE_KEY)!!
             observeOnViewModel()
             getMovie(movie)
         }
     }
 
-    private fun getMovie(movie: MoviesListResultDTO) {
+    private fun getMovie(movie: MoviesListResult) {
         viewModel.getMovieFromRemote(movie.id)
     }
 
@@ -84,22 +84,22 @@ class DetailsFragment : Fragment() {
             }
             AppState.Loading -> binding.loading.visibility = View.VISIBLE
             is AppState.SuccessMovie -> {
-                setData(appState.movieDTO)
+                setData(appState.movie)
                 binding.loading.visibility = View.GONE
             }
         }
     }
 
-    private fun setData(movieDTO: MovieDTO) {
+    private fun setData(movie: Movie) {
         binding.apply {
-            with(movieDTO) {
+            with(movie) {
                 filmDetailName.text = title
                 filmDetailGenres.text = genres.toString()
                 filmDetailDuration.text = runtime.toString()
-                filmDetailRating.text = vote_average.toString()
+                filmDetailRating.text = voteAverage.toString()
                 filmDetailDescription.text = overview
-                filmDetailReleaseDate.text = release_date
-                filmDetailImage.load(POSTER_BASE_URL + movieDTO.poster_path)
+                filmDetailReleaseDate.text = releaseDate
+                filmDetailImage.load(POSTER_BASE_URL + movie.posterPath)
             }
         }
     }

@@ -1,7 +1,7 @@
 package ru.gb.makulin.mymoviefinder.view.main
 
-import ru.gb.makulin.mymoviefinder.facade.main.MoviesListResultDTO
+import ru.gb.makulin.mymoviefinder.model.MoviesListResult
 
 interface OnItemClickListener {
-    fun onItemClick(movie: MoviesListResultDTO)
+    fun onItemClick(movie: MoviesListResult)
 }
