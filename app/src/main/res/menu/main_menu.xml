@@ -6,4 +6,13 @@
         android:id="@+id/actionHome"
         android:title="@string/menu_home_text"
         app:showAsAction="ifRoom" />
+
+
+    <item
+        android:id="@+id/isAdultSettings"
+        android:title="@string/menu_adult_text"
+        android:checkable="true"
+        />
+
+
 </menu>

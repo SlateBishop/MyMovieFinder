@@ -10,4 +10,5 @@
     <string name="onFailedDataLoadingText">Ошибка загрузки данных</string>
     <string name="menu_home_text">На главную</string>
     <string name="snackActionText">Перезагрузить</string>
+    <string name="menu_adult_text">Контент для взрослых</string>
 </resources>
