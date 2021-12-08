@@ -1,13 +1,11 @@
 package ru.gb.makulin.mymoviefinder.view
 
-import android.content.Context
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import ru.gb.makulin.mymoviefinder.R
-import ru.gb.makulin.mymoviefinder.utils.SP_IS_ADULT
 import ru.gb.makulin.mymoviefinder.view.main.MainFragment
 
 class MainActivity : AppCompatActivity() {
@@ -19,10 +17,6 @@ class MainActivity : AppCompatActivity() {
             replaceContainerToFragment(MainFragment.newInstance())
         }
         initToolbar()
-    }
-
-    private val sharedPreferences by lazy {
-        this.getPreferences(Context.MODE_PRIVATE)
     }
 
     private fun initToolbar() {
@@ -38,10 +32,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.actionHome -> replaceContainerToFragment(MainFragment.newInstance())
-            R.id.isAdultSettings -> {
-                item.isChecked = !item.isChecked
-                sharedPreferences.edit().putBoolean(SP_IS_ADULT, item.isChecked).apply()
-            }
+            R.id.actionSettings -> replaceContainerToFragment(SettingsFragment())
         }
         return super.onOptionsItemSelected(item)
     }

@@ -1,0 +1,7 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <SwitchPreferenceCompat
+        app:key="adult"
+        app:title="@string/settings_adult_text"/>
+
+</PreferenceScreen>

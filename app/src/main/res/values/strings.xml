@@ -1,14 +1,26 @@
 <resources>
     <string name="app_name">MyMovieFinder</string>
+
+    <!--    movies category -->
     <string name="category_top_rated">Top Rated</string>
     <string name="category_new">Now Playing</string>
     <string name="category_upcoming">Upcoming</string>
+
+    <!--    AppState -->
     <string name="appStateSuccess">Success</string>
     <string name="appStateError">ERROR: </string>
+    <string name="onFailedDataLoadingText">Ошибка загрузки данных</string>
+    <string name="snackActionText">Перезагрузить</string>
+
+    <!--    Views items name -->
     <string name="details_duration_measure">min</string>
     <string name="details_rating_label">Rating</string>
-    <string name="onFailedDataLoadingText">Ошибка загрузки данных</string>
+
+    <!--    menu -->
     <string name="menu_home_text">На главную</string>
-    <string name="snackActionText">Перезагрузить</string>
-    <string name="menu_adult_text">Контент для взрослых</string>
+    <string name="menu_settings_text">Настройки</string>
+
+    <!--    Settings -->
+    <string name="settings_adult_text">Контент для взрослых</string>
+
 </resources>

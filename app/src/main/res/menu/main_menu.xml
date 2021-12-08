@@ -7,12 +7,9 @@
         android:title="@string/menu_home_text"
         app:showAsAction="ifRoom" />
 
-
     <item
-        android:id="@+id/isAdultSettings"
-        android:title="@string/menu_adult_text"
-        android:checkable="true"
-        />
-
+        android:id="@+id/actionSettings"
+        android:title="@string/menu_settings_text"
+        app:showAsAction="never"/>
 
 </menu>
