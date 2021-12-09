@@ -3,6 +3,7 @@ package ru.gb.makulin.mymoviefinder.room
 import androidx.room.*
 import androidx.room.OnConflictStrategy.IGNORE
 import androidx.room.OnConflictStrategy.REPLACE
+import ru.gb.makulin.mymoviefinder.model.HistoryMovieData
 
 @Dao
 interface HistoryDAO {
@@ -22,14 +23,18 @@ interface HistoryDAO {
     @Query("DELETE from HistoryEntity")
     fun clearHistory()
 
-    @Query("SELECT * from HistoryEntity")
-    fun getAllHistory(): List<HistoryEntity>
+    @Query(
+        "SELECT MovieEntity.name, MovieEntity.description, MovieEntity.poster_path, " +
+                "HistoryEntity.date, HistoryEntity.comment, HistoryEntity.movie_id " +
+                "FROM HistoryEntity,MovieEntity"
+    )
+    fun getAllHistoryMovieData(): List<HistoryMovieData>
 
     @Query(
         "SELECT MovieEntity.name, MovieEntity.description, MovieEntity.poster_path, " +
-                "HistoryEntity.date, HistoryEntity.comment FROM HistoryEntity,MovieEntity " +
-                "WHERE HistoryEntity.id =:id"
+                "HistoryEntity.date, HistoryEntity.comment, HistoryEntity.movie_id " +
+                "FROM HistoryEntity,MovieEntity WHERE HistoryEntity.id =:id"
     )
-    fun getHistoryMovieData(id:Long) :HistoryMovieData
+    fun getHistoryMovieData(id: Long): HistoryMovieData
 
 }

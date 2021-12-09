@@ -74,7 +74,7 @@ class DetailsFragment : Fragment() {
     private fun renderData(appState: AppState) {
         when (appState) {
             is AppState.Error -> {
-                binding.loading.visibility = View.GONE
+                binding.loading.loading.visibility = View.GONE
                 binding.root.makeSnackbar(
                     getString(R.string.onFailedDataLoadingText),
                     getString(R.string.snackActionText)
@@ -82,10 +82,10 @@ class DetailsFragment : Fragment() {
                     getMovie(movie)
                 }
             }
-            AppState.Loading -> binding.loading.visibility = View.VISIBLE
+            AppState.Loading -> binding.loading.loading.visibility = View.VISIBLE
             is AppState.SuccessMovie -> {
                 setData(appState.movie)
-                binding.loading.visibility = View.GONE
+                binding.loading.loading.visibility = View.GONE
             }
         }
     }

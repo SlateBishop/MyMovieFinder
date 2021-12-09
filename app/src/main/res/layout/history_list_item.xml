@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/historyListItem"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/card_margin"
+    app:cardCornerRadius="@dimen/card_corner_radius"
+    app:cardElevation="@dimen/card_elevation">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/card_padding">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/cardHistoryPoster"
+            android:layout_width="@dimen/card_width"
+            android:layout_height="@dimen/image_height"
+            android:scaleType="centerCrop" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/cardHistoryTitle"
+            android:layout_width="@dimen/card_width"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/card_text_size"
+            tools:text="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/cardHistoryDate"
+            android:layout_width="@dimen/card_width"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/card_text_size"
+            tools:text="2020/01/01" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

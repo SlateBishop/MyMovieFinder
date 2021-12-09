@@ -5,6 +5,7 @@
     <string name="category_top_rated">Top Rated</string>
     <string name="category_new">Now Playing</string>
     <string name="category_upcoming">Upcoming</string>
+    <string name="category_history">История просмотров</string>
 
     <!--    AppState -->
     <string name="appStateSuccess">Success</string>
@@ -19,8 +20,10 @@
     <!--    menu -->
     <string name="menu_home_text">На главную</string>
     <string name="menu_settings_text">Настройки</string>
+    <string name="menu_history_text">История</string>
 
     <!--    Settings -->
     <string name="settings_adult_text">Контент для взрослых</string>
+
 
 </resources>

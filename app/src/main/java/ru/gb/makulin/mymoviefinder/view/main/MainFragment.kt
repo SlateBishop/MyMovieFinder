@@ -90,7 +90,7 @@ class MainFragment : Fragment(), OnItemClickListener {
     private fun renderData(appState: AppState) {
         when (appState) {
             is AppState.Error -> {
-                binding.loading.visibility = View.GONE
+                binding.loading.loading.visibility = View.GONE
                 binding.root.makeSnackbar(
                     getString(R.string.onFailedDataLoadingText),
                     getString(R.string.snackActionText)
@@ -98,39 +98,39 @@ class MainFragment : Fragment(), OnItemClickListener {
                     getMoviesList()
                 }
             }
-            AppState.Loading -> binding.loading.visibility = View.VISIBLE
+            AppState.Loading -> binding.loading.loading.visibility = View.VISIBLE
 
             is AppState.ErrorNowPlayingMovies -> {
-                binding.loading.visibility = View.GONE
+                binding.loading.loading.visibility = View.GONE
                 binding.root.makeErrSnackbar(
                 ) {
                     getNowPlayingMovies()
                 }
             }
             is AppState.ErrorTopRatedMovies -> {
-                binding.loading.visibility = View.GONE
+                binding.loading.loading.visibility = View.GONE
                 binding.root.makeErrSnackbar(
                 ) {
                     getTopRatedMovies()
                 }
             }
             is AppState.ErrorUpcomingMovies -> {
-                binding.loading.visibility = View.GONE
+                binding.loading.loading.visibility = View.GONE
                 binding.root.makeErrSnackbar(
                 ) {
                     getUpcomingMovies()
                 }
             }
             is AppState.SuccessNowPlayingMovies -> {
-                binding.loading.visibility = View.GONE
+                binding.loading.loading.visibility = View.GONE
                 setDataToAdapter(mainAdapterForNew, appState.nowPlayingData.results)
             }
             is AppState.SuccessTopRatedMovies -> {
-                binding.loading.visibility = View.GONE
+                binding.loading.loading.visibility = View.GONE
                 setDataToAdapter(mainAdapterForTopRated, appState.topRatedData.results)
             }
             is AppState.SuccessUpcomingMovies -> {
-                binding.loading.visibility = View.GONE
+                binding.loading.loading.visibility = View.GONE
                 setDataToAdapter(mainAdapterForUpcoming, appState.upcomingData.results)
             }
         }

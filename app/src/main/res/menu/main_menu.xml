@@ -12,4 +12,10 @@
         android:title="@string/menu_settings_text"
         app:showAsAction="never"/>
 
+    <item
+        android:id="@+id/actionHistory"
+        android:title="@string/menu_history_text"
+        app:showAsAction="never"
+        />
+
 </menu>

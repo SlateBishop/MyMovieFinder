@@ -6,6 +6,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import ru.gb.makulin.mymoviefinder.R
+import ru.gb.makulin.mymoviefinder.view.history.HistoryFragment
 import ru.gb.makulin.mymoviefinder.view.main.MainFragment
 
 class MainActivity : AppCompatActivity() {
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.actionHome -> replaceContainerToFragment(MainFragment.newInstance())
             R.id.actionSettings -> replaceContainerToFragment(SettingsFragment())
+            R.id.actionHistory -> replaceContainerToFragment(HistoryFragment())
         }
         return super.onOptionsItemSelected(item)
     }

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/details_container_padding">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/filmHistoryName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/film_detail_name_size"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Film name" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/filmHistoryImage"
+                android:layout_width="@dimen/film_detail_image_width"
+                android:layout_height="@dimen/film_detail_image_height"
+                android:scaleType="fitStart"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/filmHistoryName"
+                tools:src="@drawable/ic_launcher_background" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/filmHistoryDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/film_detail_text_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/filmHistoryImage"
+                tools:text="very long and pretty description very long and pretty description very long and pretty description very long and pretty description very long and pretty description very long and pretty description " />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/filmHistoryUserNote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/film_detail_text_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/filmHistoryDescription"
+                tools:text="Заметка:"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <include
+        layout="@layout/loading_item"
+        android:id="@+id/loading"
+        />
+
+</FrameLayout>
