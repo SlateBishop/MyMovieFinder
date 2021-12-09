@@ -6,14 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.preference.PreferenceManager
 import ru.gb.makulin.mymoviefinder.R
 import ru.gb.makulin.mymoviefinder.databinding.FragmentMainBinding
 import ru.gb.makulin.mymoviefinder.model.MoviesListResult
+import ru.gb.makulin.mymoviefinder.utils.SP_IS_ADULT_SETTING
 import ru.gb.makulin.mymoviefinder.utils.makeErrSnackbar
 import ru.gb.makulin.mymoviefinder.utils.makeSnackbar
 import ru.gb.makulin.mymoviefinder.view.details.DetailsFragment
 import ru.gb.makulin.mymoviefinder.viewmodel.AppState
 import ru.gb.makulin.mymoviefinder.viewmodel.MainViewModel
+import java.util.function.Predicate
 
 class MainFragment : Fragment(), OnItemClickListener {
 
@@ -25,6 +28,10 @@ class MainFragment : Fragment(), OnItemClickListener {
     private val mainAdapterForUpcoming = MainAdapter()
     private val viewModel: MainViewModel by lazy {
         ViewModelProvider(this).get(MainViewModel::class.java)
+    }
+
+    private val sharedPreferences by lazy {
+        PreferenceManager.getDefaultSharedPreferences(requireContext())
     }
 
     companion object {
@@ -129,8 +136,24 @@ class MainFragment : Fragment(), OnItemClickListener {
         }
     }
 
-    private fun setDataToAdapter(adapter: MainAdapter, data: List<MoviesListResult>) =
+    private fun setDataToAdapter(adapter: MainAdapter, data: MutableList<MoviesListResult>) {
+/*
+Для проверки работоспособности первого пункта ДЗ№8 необходимо раскоментировать строку ниже.
+Уберутся первые фильмы каждого списка при отключенном контенте для взрослых
+ */
+//        data[0].adult = true
+        val isAdult = isAdultSettingsOn()
+        if (!isAdult) {
+            filter(data, Predicate {
+                it.adult
+            })
+        }
         adapter.setData(data)
+    }
+
+    private fun isAdultSettingsOn(): Boolean =
+        sharedPreferences.getBoolean(SP_IS_ADULT_SETTING, false)
+
 
     override fun onDestroy() {
         super.onDestroy()
@@ -144,5 +167,16 @@ class MainFragment : Fragment(), OnItemClickListener {
             .replace(R.id.fragment_container, DetailsFragment.newInstance(bundle))
             .addToBackStack("")
             .commit()
+    }
+
+    private fun <T> filter(list: MutableList<T>, predicate: Predicate<T>) {
+        val itr = list.iterator()
+
+        while (itr.hasNext()) {
+            val t = itr.next()
+            if (predicate.test(t)) {
+                itr.remove()
+            }
+        }
     }
 }

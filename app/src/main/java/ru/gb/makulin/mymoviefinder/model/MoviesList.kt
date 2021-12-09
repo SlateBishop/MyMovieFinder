@@ -2,5 +2,5 @@ package ru.gb.makulin.mymoviefinder.model
 
 data class MoviesList(
     val page: Int,
-    val results: List<MoviesListResult>
+    val results: MutableList<MoviesListResult>
 )

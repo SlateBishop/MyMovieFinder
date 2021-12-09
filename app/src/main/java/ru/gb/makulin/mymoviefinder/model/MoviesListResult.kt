@@ -5,7 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class MoviesListResult(
-    val adult: Boolean,
+    var adult: Boolean,
     val id: Int,
     val posterPath: String,
     val releaseDate: String,

@@ -42,7 +42,7 @@ fun convertMoviesListDtoToMoviesList(listDTO: MoviesListDTO): MoviesList {
     )
 }
 
-fun convertMoviesListResultDtoToMoviesListResult(resultDTO: List<MoviesListResultDTO>): List<MoviesListResult> {
+fun convertMoviesListResultDtoToMoviesListResult(resultDTO: List<MoviesListResultDTO>): MutableList<MoviesListResult> {
     return resultDTO.map {
         with(it) {
             MoviesListResult(
@@ -54,5 +54,5 @@ fun convertMoviesListResultDtoToMoviesListResult(resultDTO: List<MoviesListResul
                 vote_average
             )
         }
-    }
+    }.toMutableList()
 }
