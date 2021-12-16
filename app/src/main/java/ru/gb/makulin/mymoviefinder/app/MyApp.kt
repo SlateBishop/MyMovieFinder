@@ -22,7 +22,9 @@ class MyApp : Application() {
                                 appInstance!!.applicationContext,
                                 HistoryDataBase::class.java,
                                 DB_NAME
-                            ).build()
+                            )
+                                .allowMainThreadQueries() //FIXME временно для проверки работы кода
+                                .build()
                         } else {
                             throw  IllegalStateException("Application is null")
                         }

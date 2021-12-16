@@ -84,7 +84,9 @@ class DetailsFragment : Fragment() {
             }
             AppState.Loading -> binding.loading.loading.visibility = View.VISIBLE
             is AppState.SuccessMovie -> {
-                setData(appState.movie)
+                val movie = appState.movie
+                viewModel.saveDataToDB(movie)
+                setData(movie)
                 binding.loading.loading.visibility = View.GONE
             }
         }

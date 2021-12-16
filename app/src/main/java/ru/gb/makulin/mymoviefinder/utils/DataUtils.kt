@@ -59,17 +59,31 @@ fun convertMoviesListResultDtoToMoviesListResult(resultDTO: List<MoviesListResul
     }.toMutableList()
 }
 
-fun convertHistoryDataToHistoryEntity(data: HistoryMovieData): HistoryEntity {
+fun convertMovieToHistoryEntity(data: Movie): HistoryEntity {
     return with(data) {
-        HistoryEntity(0, movieID, date, comment)
+        HistoryEntity(0, id.toLong(), Calendar.getInstance().time, "comment") //TODO fix comment
     }
 }
 
-fun convertHistoryDataToMovieEntity(data: HistoryMovieData): MovieEntity {
+fun convertMovieToMovieEntity(data: Movie): MovieEntity {
     return with(data) {
-        MovieEntity(movieID,name, description, posterPath)
+        MovieEntity(id.toLong(),title, overview, posterPath)
     }
 }
+
+//fun convertHistoryDataToHistoryEntity(data: HistoryMovieData): HistoryEntity {
+//    return with(data) {
+//        HistoryEntity(0, movieID, date, comment)
+//    }
+//}
+//
+//fun convertHistoryDataToMovieEntity(data: HistoryMovieData): MovieEntity {
+//    return with(data) {
+//        MovieEntity(movieID,name, description, posterPath)
+//    }
+//}
+
+
 
 class Converters {
     @TypeConverter

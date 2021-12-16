@@ -5,16 +5,21 @@ import androidx.lifecycle.ViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import ru.gb.makulin.mymoviefinder.app.MyApp.Companion.getHistoryDAO
 import ru.gb.makulin.mymoviefinder.facade.RemoteDataSource
 import ru.gb.makulin.mymoviefinder.facade.details.DetailsRepositoryImpl
 import ru.gb.makulin.mymoviefinder.facade.details.MovieDTO
+import ru.gb.makulin.mymoviefinder.facade.history.LocalRepositoryImpl
+import ru.gb.makulin.mymoviefinder.model.Movie
 import ru.gb.makulin.mymoviefinder.utils.convertMovieDtoToMovie
+import ru.gb.makulin.mymoviefinder.utils.convertMovieToHistoryEntity
 
 class DetailsViewModel(
     private val detailsLiveDataToObserve: MutableLiveData<AppState> = MutableLiveData(),
     private val detailsRepositoryImpl: DetailsRepositoryImpl = DetailsRepositoryImpl(
         RemoteDataSource()
-    )
+    ),
+    private val historyRepositoryImpl: LocalRepositoryImpl = LocalRepositoryImpl(getHistoryDAO())
 ) : ViewModel() {
 
     fun getLiveData() = detailsLiveDataToObserve
@@ -44,5 +49,10 @@ class DetailsViewModel(
         override fun onFailure(call: Call<MovieDTO>, t: Throwable) {
             detailsLiveDataToObserve.value = AppState.Error(t.localizedMessage)
         }
+    }
+
+    fun saveDataToDB(movie:Movie) {
+        historyRepositoryImpl.saveHistory(movie)
+        historyRepositoryImpl.saveMovie(movie)
     }
 }
